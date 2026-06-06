@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1d6e6e">
+<title>Cerdeña · Verano 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sea:#1d6e6e; --sea-deep:#0d4a4a; --sand:#f4ece0; --sand-deep:#e8dcc8;
+    --terracotta:#c75b39; --terracotta-soft:#e08b6c; --ink:#23201c; --ink-soft:#6b6358;
+    --paper:#fbf7f0; --gold:#d9a441; --line:rgba(35,32,28,.10);
+    --shadow:0 1px 2px rgba(35,32,28,.04),0 8px 24px rgba(35,32,28,.06);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth;scroll-padding-top:72px}
+  body{font-family:'Outfit',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;font-weight:300;overflow-x:hidden}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;letter-spacing:-.01em}
+
+  /* ===== top nav ===== */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(251,247,240,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:1100px;margin:0 auto;padding:.7rem 1.1rem;display:flex;align-items:center;gap:.6rem;overflow-x:auto;scrollbar-width:none}
+  .nav-inner::-webkit-scrollbar{display:none}
+  .nav-brand{font-family:'Fraunces',serif;font-weight:600;font-size:1.02rem;color:var(--sea-deep);white-space:nowrap;margin-right:.3rem}
+  .nav a.pill{font-size:.82rem;color:var(--ink-soft);text-decoration:none;padding:.32rem .7rem;border-radius:999px;white-space:nowrap;transition:.2s;border:1px solid transparent}
+  .nav a.pill:hover{color:var(--sea-deep);background:var(--sand)}
+
+  /* ===== hero ===== */
+  .hero{position:relative;padding:4.2rem 1.3rem 3.4rem;text-align:center;overflow:hidden;
+    background:linear-gradient(160deg,#207878 0%,#0d4a4a 60%,#0a3a3a 100%);color:var(--sand)}
+  .hero::before{content:"";position:absolute;inset:0;opacity:.16;
+    background-image:radial-gradient(circle at 20% 30%,#fff 0 1px,transparent 1px),radial-gradient(circle at 70% 60%,#fff 0 1px,transparent 1px);
+    background-size:46px 46px,72px 72px}
+  .hero-wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;display:block}
+  .hero h1{font-size:clamp(2.4rem,9vw,4.2rem);color:#fff;font-weight:600}
+  .hero .sub{font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.05rem,4vw,1.4rem);opacity:.92;margin-top:.5rem}
+  .hero .dates{margin-top:1.4rem;display:inline-flex;gap:.5rem 1.3rem;flex-wrap:wrap;justify-content:center;
+    font-size:.86rem;letter-spacing:.04em;text-transform:uppercase;opacity:.9}
+  .hero .dates span{display:inline-flex;align-items:center;gap:.4rem}
+  .hero .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block}
+
+  .wrap{max-width:1100px;margin:0 auto;padding:0 1.1rem}
+  .section{padding:3rem 0 1rem}
+  .eyebrow{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terracotta);font-weight:500;font-family:'Outfit',sans-serif}
+  .section h2{font-size:clamp(1.7rem,5vw,2.3rem);margin:.3rem 0 1.4rem}
+
+  /* ===== overview cards ===== */
+  .grid-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.9rem;margin-bottom:1rem}
+  .info-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:1.1rem 1.2rem;box-shadow:var(--shadow)}
+  .info-card .ic{font-size:1.4rem;margin-bottom:.4rem}
+  .info-card h4{font-size:1.02rem;margin-bottom:.15rem}
+  .info-card p{font-size:.88rem;color:var(--ink-soft)}
+  .info-card p strong{color:var(--ink);font-weight:500}
+
+  /* ===== timeline / days ===== */
+  .legend{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1.6rem;font-size:.83rem;color:var(--ink-soft)}
+  .legend span{display:inline-flex;align-items:center;gap:.45rem}
+  .chip{width:13px;height:13px;border-radius:4px;display:inline-block}
+  .chip.couple{background:var(--sea)}
+  .chip.family{background:var(--terracotta)}
+
+  .day{background:var(--paper);border:1px solid var(--line);border-radius:22px;margin-bottom:1.3rem;overflow:hidden;box-shadow:var(--shadow);scroll-margin-top:72px}
+  .day-head{display:flex;align-items:stretch;cursor:pointer;user-select:none}
+  .day-num{flex:0 0 84px;background:var(--sea);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.1rem .5rem;text-align:center}
+  .day.fam .day-num{background:var(--terracotta)}
+  .day-num .d{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;line-height:1}
+  .day-num .m{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-top:.25rem;opacity:.9}
+  .day-title{flex:1;padding:1rem 1.1rem;display:flex;flex-direction:column;justify-content:center;gap:.25rem}
+  .day-title .route{font-family:'Fraunces',serif;font-size:1.18rem;font-weight:500;color:var(--ink)}
+  .day-title .tags{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
+  .tag{font-size:.72rem;padding:.18rem .55rem;border-radius:999px;background:var(--sand);color:var(--ink-soft);white-space:nowrap}
+  .tag.grp{background:var(--sea);color:#fff}
+  .day.fam .tag.grp{background:var(--terracotta);color:#fff}
+  .tag.drive{background:var(--sand-deep);color:var(--ink);display:inline-flex;gap:.3rem;align-items:center}
+  .day-toggle{flex:0 0 44px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:1.3rem;transition:.3s}
+  .day.open .day-toggle{transform:rotate(180deg)}
+
+  .day-body{max-height:0;overflow:hidden;transition:max-height .45s ease}
+  .day.open .day-body{max-height:1600px}
+  .day-inner{padding:.3rem 1.2rem 1.4rem;border-top:1px solid var(--line)}
+  .rows{display:grid;gap:.1rem;margin-top:.9rem}
+  .row{display:grid;grid-template-columns:128px 1fr;gap:.7rem;padding:.62rem 0;border-bottom:1px dashed var(--line);align-items:start}
+  .row:last-child{border-bottom:none}
+  .row .k{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--terracotta);font-weight:500;padding-top:.12rem}
+  .row .v{font-size:.94rem;color:var(--ink)}
+  .row .v .meta{display:block;font-size:.82rem;color:var(--ink-soft);margin-top:.1rem}
+  .row .v a{color:var(--sea-deep);text-decoration:none;border-bottom:1px solid rgba(13,74,74,.3)}
+  .note{margin-top:.9rem;background:var(--sand);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:.7rem .9rem;font-size:.86rem;color:var(--ink-soft)}
+  .note strong{color:var(--ink);font-weight:500}
+
+  /* ===== imprescindibles ===== */
+  .must{margin-top:1rem;background:linear-gradient(180deg,rgba(199,91,57,.06),rgba(199,91,57,.02));border:1px solid rgba(199,91,57,.18);border-radius:14px;padding:.85rem 1rem}
+  .must .must-h{display:flex;align-items:center;gap:.45rem;font-family:'Fraunces',serif;font-weight:600;font-size:.96rem;color:var(--terracotta);margin-bottom:.55rem}
+  .must ul{list-style:none;display:grid;gap:.5rem}
+  .must li{display:flex;gap:.6rem;font-size:.9rem;color:var(--ink);align-items:flex-start}
+  .must li .star{color:var(--gold);flex-shrink:0;line-height:1.5}
+  .must li b{font-weight:500}
+
+  /* ===== mapa isla ===== */
+  .map-box{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:1.1rem;box-shadow:var(--shadow)}
+  .map-box svg{width:100%;height:auto;display:block}
+  .map-legend{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:.9rem;font-size:.86rem;color:var(--ink-soft);justify-content:center}
+  .map-legend span{display:inline-flex;align-items:center;gap:.5rem}
+  .lg-bed{width:22px;height:22px;border-radius:7px;background:var(--sea);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.8rem}
+  .lg-see{width:22px;height:22px;border-radius:50%;background:var(--terracotta);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.7rem}
+  .m-label{font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;fill:var(--ink)}
+  .m-label-sm{font-family:'Outfit',sans-serif;font-size:11px;font-weight:400;fill:var(--ink-soft)}
+
+  /* ===== stays / restaurants reference ===== */
+  .ref-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
+  .ref{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:1.1rem 1.2rem;box-shadow:var(--shadow)}
+  .ref h4{font-size:1.05rem;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
+  .ref ul{list-style:none;display:grid;gap:.55rem}
+  .ref li{font-size:.9rem;display:flex;flex-direction:column;gap:.1rem}
+  .ref li .name{font-weight:500;color:var(--ink)}
+  .ref li .det{font-size:.82rem;color:var(--ink-soft)}
+  .ref li a{color:var(--sea-deep);text-decoration:none}
+
+  /* ===== checklist ===== */
+  .checklist{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.9rem}
+  .check-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:1rem 1.15rem;box-shadow:var(--shadow)}
+  .check-card h4{font-size:1rem;margin-bottom:.6rem;color:var(--sea-deep)}
+  .check-card label{display:flex;gap:.6rem;align-items:flex-start;font-size:.88rem;padding:.32rem 0;color:var(--ink-soft);cursor:pointer}
+  .check-card input{margin-top:.28rem;accent-color:var(--sea);width:16px;height:16px;flex-shrink:0}
+
+  footer{text-align:center;padding:2.6rem 1.2rem 3.2rem;color:var(--ink-soft);font-size:.84rem}
+  footer .heart{color:var(--terracotta)}
+
+  @media(max-width:560px){
+    .day-num{flex:0 0 66px}
+    .day-num .d{font-size:1.5rem}
+    .row{grid-template-columns:1fr;gap:.15rem}
+    .row .k{padding-top:0}
+    .hero{padding:3.2rem 1.1rem 3rem}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <span class="nav-brand">🌊 Cerdeña '26</span>
+    <a class="pill" href="#info">Info</a>
+    <a class="pill" href="#mapa">Mapa</a>
+    <a class="pill" href="#dias">Días</a>
+    <a class="pill" href="#hoteles">Hoteles</a>
+    <a class="pill" href="#comer">Comer</a>
+    <a class="pill" href="#barco">Barco</a>
+    <a class="pill" href="#maleta">Maleta</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>Cerdeña</h1>
+  <p class="sub">Nueve días de mar, mesa y pueblos</p>
+  <div class="dates">
+    <span><span class="dot"></span>29 jul → 6 ago 2026</span>
+    <span><span class="dot"></span>Olbia · Sur · Costa Oeste · La Maddalena</span>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" height="48"><path fill="#fbf7f0" d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,40 L1440,80 L0,80 Z"></path></svg>
+</header>
+
+<!-- ===== INFO ===== -->
+<section class="section wrap" id="info">
+  <p class="eyebrow">De un vistazo</p>
+  <h2>Lo esencial del viaje</h2>
+  <div class="grid-info">
+    <div class="info-card">
+      <div class="ic">✈️</div><h4>Vuelos</h4>
+      <p><strong>Llegada:</strong> Olbia, mié 29 jul · 19:30<br><strong>Salida:</strong> Olbia, jue 6 ago · 11:20</p>
+    </div>
+    <div class="info-card">
+      <div class="ic">👨‍👩‍👧‍👦</div><h4>Los hijos</h4>
+      <p><strong>Llegan:</strong> Cagliari, vie 31 jul · 16:20<br><strong>Se van:</strong> Cagliari, dom 2 ago · 10:30</p>
+    </div>
+    <div class="info-card">
+      <div class="ic">🚗</div><h4>Coche</h4>
+      <p>Ya alquilado. Recogida y entrega en la <strong>terminal del aeropuerto de Olbia</strong>. ~13–14 h de conducción en 9 días.</p>
+    </div>
+    <div class="info-card">
+      <div class="ic">🏖️</div><h4>El plan</h4>
+      <p>Norte (Olbia, Castelsardo) → Sur familiar (Istedda) → Costa oeste (Bosa, Alghero) → La Maddalena.</p>
+    </div>
+  </div>
+  <div class="note"><strong>Reservar con antelación (agosto = temporada alta):</strong> hoteles, barco privado del 1 de agosto, restaurantes destacados y el ferry de La Maddalena.</div>
+  <div class="note">🚗 <strong>Coche:</strong> ya alquilado. Recogida y entrega en la <strong>terminal del aeropuerto de Olbia</strong>.</div>
+</section>
+
+<!-- ===== MAPA ===== -->
+<section class="section wrap" id="mapa">
+  <p class="eyebrow">Sobre el mapa</p>
+  <h2>Nuestra Cerdeña</h2>
+  <div class="map-box">
+    <svg viewBox="0 0 440 560" role="img" aria-label="Mapa de Cerdeña con las ciudades donde nos alojamos y las que visitamos">
+      <title>Mapa del recorrido por Cerdeña</title>
+      <!-- silueta estilizada de la isla -->
+      <path d="M205,30 C250,28 270,55 268,85 C266,112 285,120 300,140 C318,163 312,195 322,220
+               C333,247 360,255 365,285 C370,318 345,335 340,365 C335,398 355,420 340,455
+               C326,488 290,495 270,520 C250,543 220,545 195,530 C168,514 165,485 145,470
+               C120,451 92,455 78,430 C62,402 80,378 70,350 C61,323 38,318 40,288
+               C42,258 70,252 80,225 C90,198 75,172 92,148 C110,122 142,128 158,105
+               C173,83 160,52 178,40 C188,33 196,30 205,30 Z"
+            fill="#e3f0ec" stroke="#1d6e6e" stroke-width="2" stroke-linejoin="round"/>
+      <!-- olas decorativas -->
+      <g stroke="#9fc9c0" stroke-width="1.4" fill="none" opacity=".55">
+        <path d="M20,90 q10,-7 20,0 t20,0"/><path d="M385,160 q10,-7 20,0 t20,0"/>
+        <path d="M30,470 q10,-7 20,0 t20,0"/><path d="M380,420 q10,-7 20,0 t20,0"/>
+      </g>
+
+      <!-- ===== marcadores ===== -->
+      <!-- Olbia (NE) - alojamiento + aeropuerto -->
+      <g transform="translate(300,150)">
+        <rect x="-13" y="-13" width="26" height="26" rx="8" fill="#1d6e6e"/>
+        <text x="0" y="5" text-anchor="middle" font-size="14" fill="#fff">🛏</text>
+        <text class="m-label" x="18" y="0">Olbia ✈</text>
+        <text class="m-label-sm" x="18" y="15">Llegada · 2 noches</text>
+      </g>
+      <!-- Palau (N) - alojamiento + ferry Maddalena -->
+      <g transform="translate(232,72)">
+        <rect x="-13" y="-13" width="26" height="26" rx="8" fill="#1d6e6e"/>
+        <text x="0" y="5" text-anchor="middle" font-size="14" fill="#fff">🛏</text>
+        <text class="m-label" x="0" y="-20" text-anchor="middle">Palau ⛴</text>
+        <text class="m-label-sm" x="0" y="-7" text-anchor="middle">Última noche</text>
+      </g>
+      <!-- La Maddalena (N, islita) - visita -->
+      <g transform="translate(250,40)">
+        <circle r="11" fill="#c75b39"/>
+        <text x="0" y="4" text-anchor="middle" font-size="11" fill="#fff">★</text>
+        <text class="m-label" x="16" y="4">La Maddalena</text>
+      </g>
+      <!-- Castelsardo (NO) - visita -->
+      <g transform="translate(120,118)">
+        <circle r="11" fill="#c75b39"/>
+        <text x="0" y="4" text-anchor="middle" font-size="11" fill="#fff">★</text>
+        <text class="m-label" x="-16" y="4" text-anchor="end">Castelsardo</text>
+      </g>
+      <!-- Alghero (O) - alojamiento -->
+      <g transform="translate(72,235)">
+        <rect x="-13" y="-13" width="26" height="26" rx="8" fill="#1d6e6e"/>
+        <text x="0" y="5" text-anchor="middle" font-size="14" fill="#fff">🛏</text>
+        <text class="m-label" x="-16" y="0" text-anchor="end">Alghero</text>
+        <text class="m-label-sm" x="-16" y="15" text-anchor="end">2 noches</text>
+      </g>
+      <!-- Bosa (O) - visita -->
+      <g transform="translate(85,310)">
+        <circle r="11" fill="#c75b39"/>
+        <text x="0" y="4" text-anchor="middle" font-size="11" fill="#fff">★</text>
+        <text class="m-label" x="-16" y="4" text-anchor="end">Bosa</text>
+      </g>
+      <!-- Cagliari (S) - alojamiento + aeropuerto hijos -->
+      <g transform="translate(210,505)">
+        <rect x="-13" y="-13" width="26" height="26" rx="8" fill="#1d6e6e"/>
+        <text x="0" y="5" text-anchor="middle" font-size="14" fill="#fff">🛏</text>
+        <text class="m-label" x="0" y="28" text-anchor="middle">Cagliari ✈</text>
+        <text class="m-label-sm" x="0" y="43" text-anchor="middle">1 noche · hijos</text>
+      </g>
+      <!-- Solanas / Istedda (SE) - alojamiento base familiar -->
+      <g transform="translate(290,480)">
+        <rect x="-13" y="-13" width="26" height="26" rx="8" fill="#1d6e6e"/>
+        <text x="0" y="5" text-anchor="middle" font-size="14" fill="#fff">🛏</text>
+        <text class="m-label" x="16" y="0">Istedda</text>
+        <text class="m-label-sm" x="16" y="15">Solanas · 2 noches</text>
+      </g>
+      <!-- Villasimius (SE) - visita / barco -->
+      <g transform="translate(322,460)">
+        <circle r="11" fill="#c75b39"/>
+        <text x="0" y="4" text-anchor="middle" font-size="11" fill="#fff">★</text>
+        <text class="m-label" x="16" y="-8">Villasimius ⛵</text>
+      </g>
+    </svg>
+    <div class="map-legend">
+      <span><span class="lg-bed">🛏</span> Donde nos alojamos</span>
+      <span><span class="lg-see">★</span> Lo que visitamos</span>
+      <span>✈ Aeropuerto &nbsp;·&nbsp; ⛴ Ferry &nbsp;·&nbsp; ⛵ Barco</span>
+    </div>
+  </div>
+  <div class="note">El viaje dibuja un círculo lógico: bajamos del noreste al sur por el centro, subimos por la costa oeste y cerramos en el norte (La Maddalena) antes de volar desde Olbia.</div>
+</section>
+
+<!-- ===== DÍAS ===== -->
+<section class="section wrap" id="dias">
+  <p class="eyebrow">Día a día</p>
+  <h2>El itinerario</h2>
+  <div class="legend">
+    <span><span class="chip couple"></span>Días en pareja</span>
+    <span><span class="chip family"></span>Días con los hijos</span>
+    <span>👆 Toca cada día para abrirlo</span>
+  </div>
+
+  <!-- D1 -->
+  <article class="day open">
+    <div class="day-head" onclick="tog(this)">
+      <div class="day-num"><span class="d">29</span><span class="m">Mié Jul</span></div>
+      <div class="day-title">
+        <span class="route">Llegada a Olbia</span>
+        <span class="tags"><span class="tag grp">Pareja</span><span class="tag drive">🚗 ~10 min</span><span class="tag">Aeropuerto → ciudad</span></span>
+      </div>
+      <div class="day-toggle">⌄</div>
+    </div>
+    <div class="day-body"><div class="day-inner"><div class="rows">
+      <div class="row"><div class="k">Trayecto</div><div class="v">Aeropuerto de Olbia → centro de Olbia<span class="meta">Recoger coche de alquiler a la llegada (19:30)</span></div></div>
+      <div class="row"><div class="k">Alojamiento</div><div class="v">Olbia<span class="meta">Grand Hotel President (céntrico, parking) o Jazz Hotel (junto al aeropuerto, piscina)</span></div></div>
+      <div class="row"><div class="k">Cena</div><div class="v">Mere Ristorante<span class="meta">Pescado y pasta en el casco antiguo · hasta 22:30</span></div></div>
+    </div>
+    <div class="note">Tras un vuelo que llega de noche, conviene una cena tranquila y a pie. Compra agua/desayuno de camino del aeropuerto si el hotel no lo incluye.</div>
+    <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
+      <li><span class="star">✦</span><span>Pasear el <b>casco antiguo de Olbia</b> (Corso Umberto) y cenar al fresco sin prisa, ya en modo vacaciones.</span></li>
+      <li><span class="star">✦</span><span>Si queda luz, asomarse a la <b>basílica de San Simplicio</b>, románica, la joya histórica de la ciudad.</span></li>
+    </ul></div>
+    </div></div>
+  </article>
+
+  <!-- D2 -->
+  <article class="day">
+    <div class="day-head" onclick="tog(this)">
+      <div class="day-num"><span class="d">30</span><span class="m">Jue Jul</span></div>
+      <div class="day-title">
+        <span class="route">Castelsardo</span>
+        <span class="tags"><span class="tag grp">Pareja</span><span class="tag drive">🚗 ~1h40 / tramo</span><span class="tag">Ida y vuelta ~3h20</span></span>
+      </div>
+      <div class="day-toggle">⌄</div>
+    </div>
+    <div class="day-body"><div class="day-inner"><div class="rows">
+      <div class="row"><div class="k">Trayecto</div><div class="v">Olbia → Castelsardo → Olbia<span class="meta">~1h40 cada sentido por la costa norte</span></div></div>
+      <div class="row"><div class="k">Mañana</div><div class="v">Casco medieval y Castillo de los Doria<span class="meta">Vistas a Córcega, callejuelas, artesanía de cestería</span></div></div>
+      <div class="row"><div class="k">Comida</div><div class="v">Amare · Alla Guardiola (Castelsardo)<span class="meta">Terraza espectacular sobre el pueblo · reservar</span></div></div>
+      <div class="row"><div class="k">Alojamiento</div><div class="v">Olbia (2ª noche)</div></div>
+      <div class="row"><div class="k">Cena</div><div class="v">Trattoria La Vecchia Olbia<span class="meta">Auténtica y familiar · cerrado domingos</span></div></div>
+    </div>
+    <div class="note">Alternativa de comida más informal en Castelsardo: <strong>Raimondo's Pizzeria Contemporanea</strong>, de las mejores pizzas de la zona.</div>
+    <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
+      <li><span class="star">✦</span><span><b>Castillo de los Doria</b> (s. XII): subir hasta lo alto por las vistas del Golfo de Asinara, las mejores del pueblo.</span></li>
+      <li><span class="star">✦</span><span><b>Museo della Cestería</b> dentro del castillo: la cestería de palma enana, artesanía emblemática de Castelsardo.</span></li>
+      <li><span class="star">✦</span><span><b>Catedral de Sant'Antonio Abate</b>: campanario con cúpula de cerámica de colores y terraza asomada al mar.</span></li>
+      <li><span class="star">✦</span><span><b>Perderse por los callejones empedrados</b> del centro medieval: escaleras, casas de colores y talleres de artesanos.</span></li>
+      <li><span class="star">✦</span><span>De camino, la <b>Roccia dell'Elefante</b>: curiosa roca con forma de elefante junto a la carretera.</span></li>
+    </ul></div>
+    </div></div>
+  </article>
+
+  <!-- D3 -->
+  <article class="day fam">
+    <div class="day-head" onclick="tog(this)">
+      <div class="day-num"><span class="d">31</span><span class="m">Vie Jul</span></div>
+      <div class="day-title">
+        <span class="route">Traslado al sur · llegan los hijos</span>
+        <span class="tags"><span class="tag grp">Pareja → +hijos</span><span class="tag drive">🚗 ~2h45 + 45 min</span></span>
+      </div>
+      <div class="day-toggle">⌄</div>
+    </div>
+    <div class="day-body"><div class="day-inner"><div class="rows">
+      <div class="row"><div class="k">Trayecto</div><div class="v">Olbia → aeropuerto de Cagliari (~2h45)<span class="meta">Después: Cagliari → Istedda / Solanas (~45 min)</span></div></div>
+      <div class="row"><div class="k">Clave</div><div class="v">Recoger a los hijos · Cagliari 16:20<span class="meta">Salir de Olbia por la mañana, sin entretenerse</span></div></div>
+      <div class="row"><div class="k">Alojamiento</div><div class="v">Istedda Boutique Hotel (Solanas)<span class="meta">Base familiar · noches 31 jul, 1 ago</span></div></div>
+      <div class="row"><div class="k">Cena</div><div class="v">Ristorante Sa Tankitta (Villasimius)<span class="meta">Marisco, ambiente familiar · reservar sí o sí</span></div></div>
+    </div>
+    <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
+      <li><span class="star">✦</span><span><b>Reencuentro con los hijos</b> en Cagliari y primer chapuzón juntos en la costa de Solanas al llegar al Istedda.</span></li>
+      <li><span class="star">✦</span><span>Si la llegada lo permite, <b>atardecer desde el hotel</b> o la playa de Solanas para arrancar la parte familiar.</span></li>
+    </ul></div></div></div>
+  </article>
+
+  <!-- D4 -->
+  <article class="day fam">
+    <div class="day-head" onclick="tog(this)">
+      <div class="day-num"><span class="d">01</span><span class="m">Sáb Ago</span></div>
+      <div class="day-title">
+        <span class="route">Barco privado en familia</span>
+        <span class="tags"><span class="tag grp">Pareja + hijos</span><span class="tag drive">🚗 ~15 min al puerto</span><span class="tag">⭐ Día estrella</span></span>
+      </div>
+      <div class="day-toggle">⌄</div>
+    </div>
+    <div class="day-body"><div class="day-inner"><div class="rows">
+      <div class="row"><div class="k">Trayecto</div><div class="v">Istedda → puerto de Villasimius (~15 min)</div></div>
+      <div class="row"><div class="k">El día</div><div class="v">Charter privado por la costa sureste<span class="meta">Capo Carbonara, Isola dei Cavoli, Punta Molentis · baño y snorkel</span></div></div>
+      <div class="row"><div class="k">Comida</div><div class="v">A bordo<span class="meta">Incluida en el charter (aperitivo/almuerzo)</span></div></div>
+      <div class="row"><div class="k">Cena</div><div class="v">Sobat (fine dining) o Balù Lounge<span class="meta">Algo especial para celebrar el día en familia</span></div></div>
+    </div>
+    <div class="note">Ver sección <a href="#barco" style="color:var(--sea-deep)">Barco privado</a> para las empresas recomendadas y teléfonos.</div>
+    <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
+      <li><span class="star">✦</span><span><b>Isola dei Cavoli</b> y el faro: aguas turquesas y fondo ideal para snorkel en el área marina de Capo Carbonara.</span></li>
+      <li><span class="star">✦</span><span><b>Punta Molentis</b>: una de las calas más fotogénicas del sureste, baño desde el barco.</span></li>
+      <li><span class="star">✦</span><span><b>Aperitivo a bordo</b> fondeados en una cala: el momento del día en familia.</span></li>
+      <li><span class="star">✦</span><span>Llevar <b>gafas y tubo</b>; el patrón conoce los mejores puntos según el viento del día.</span></li>
+    </ul></div>
+    </div></div>
+  </article>
+
+  <!-- D5 -->
+  <article class="day fam">
+    <div class="day-head" onclick="tog(this)">
+      <div class="day-num"><span class="d">02</span><span class="m">Dom Ago</span></div>
+      <div class="day-title">
+        <span class="route">Despedida · Cagliari ciudad</span>
+        <span class="tags"><span class="tag grp">+hijos → Pareja</span><span class="tag drive">🚗 ~40 min + 15 min</span></span>
+      </div>
+      <div class="day-toggle">⌄</div>
+    </div>
+    <div class="day-body"><div class="day-inner"><div class="rows">
+      <div class="row"><div class="k">Trayecto</div><div class="v">Istedda → aeropuerto de Cagliari (~40 min)<span class="meta">Salir sobre las 9:00–9:15 · luego centro de Cagliari (~15 min)</span></div></div>
+      <div class="row"><div class="k">Clave</div><div class="v">Dejar a los hijos · Cagliari 10:30</div></div>
+      <div class="row"><div class="k">Tarde</div><div class="v">Conocer Cagliari<span class="meta">Barrio del Castello, bastión de Saint Remy, catedral, la Marina</span></div></div>
+      <div class="row"><div class="k">Alojamiento</div><div class="v">Cagliari (1 noche)</div></div>
+      <div class="row"><div class="k">Comer/Cenar</div><div class="v">La Taverna di Castello · Stella Marina di Montecristo<span class="meta">La Stella: menú fijo de pescado, institución local · reserva por WhatsApp</span></div></div>
+    </div>
+    <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
+      <li><span class="star">✦</span><span><b>Barrio del Castello</b>: el casco histórico amurallado en lo alto, callejear entre palacios y miradores.</span></li>
+      <li><span class="star">✦</span><span><b>Bastione di Saint Remy</b>: terraza panorámica sobre toda la ciudad y el mar.</span></li>
+      <li><span class="star">✦</span><span><b>Catedral de Santa Maria</b> y las torres pisanas (Torre dell'Elefante / San Pancrazio).</span></li>
+      <li><span class="star">✦</span><span>Paseo y cena por <b>la Marina</b>, el barrio de tabernas junto al puerto.</span></li>
+    </ul></div></div></div>
+  </article>
+
+  <!-- D6 -->
+  <article class="day">
+    <div class="day-head" onclick="tog(this)">
+      <div class="day-num"><span class="d">03</span><span class="m">Lun Ago</span></div>
+      <div class="day-title">
+        <span class="route">Cagliari → Bosa → Alghero</span>
+        <span class="tags"><span class="tag grp">Pareja</span><span class="tag drive">🚗 ~2h15 + 1h</span></span>
+      </div>
+      <div class="day-toggle">⌄</div>
+    </div>
+    <div class="day-body"><div class="day-inner"><div class="rows">
+      <div class="row"><div class="k">Trayecto</div><div class="v">Cagliari → Bosa (~2h15) → Alghero (~1h)<span class="meta">Ruta panorámica por la costa oeste</span></div></div>
+      <div class="row"><div class="k">Parada</div><div class="v">Bosa<span class="meta">Casas de colores sobre el río Temo, castillo de Serravalle · comida y paseo</span></div></div>
+      <div class="row"><div class="k">Alojamiento</div><div class="v">Alghero<span class="meta">Hotel Catalunya (vistas al mar) o Hotel Domomea (boutique) · noches 3 y 4 ago</span></div></div>
+      <div class="row"><div class="k">Cena</div><div class="v">Casco antiguo de Alghero</div></div>
+    </div>
+    <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
+      <li><span class="star">✦</span><span><b>Bosa:</b> las casas de colores de <b>Sa Costa</b> reflejadas en el río Temo, la postal del pueblo.</span></li>
+      <li><span class="star">✦</span><span><b>Castello Malaspina</b> (de Serravalle) en lo alto de Bosa, con vistas del valle y la desembocadura.</span></li>
+      <li><span class="star">✦</span><span>Paseo por la <b>orilla del Temo</b> y las antiguas curtidurías (Sas Conzas).</span></li>
+      <li><span class="star">✦</span><span>Llegada a Alghero al atardecer: primer <b>paseo por las murallas</b> sobre el mar.</span></li>
+    </ul></div></div></div>
+  </article>
+
+  <!-- D7 -->
+  <article class="day">
+    <div class="day-head" onclick="tog(this)">
+      <div class="day-num"><span class="d">04</span><span class="m">Mar Ago</span></div>
+      <div class="day-title">
+        <span class="route">Alghero · playa y casco catalán</span>
+        <span class="tags"><span class="tag grp">Pareja</span><span class="tag drive">🚗 ~15–20 min</span></span>
+      </div>
+      <div class="day-toggle">⌄</div>
+    </div>
+    <div class="day-body"><div class="day-inner"><div class="rows">
+      <div class="row"><div class="k">Trayecto</div><div class="v">Local · playas Le Bombarde / Lazzaretto (~15–20 min)</div></div>
+      <div class="row"><div class="k">Mañana</div><div class="v">Playa</div></div>
+      <div class="row"><div class="k">Tarde</div><div class="v">Casco histórico amurallado catalán<span class="meta">Murallas, callejuelas, ambiente catalán de Cerdeña</span></div></div>
+      <div class="row"><div class="k">Cena</div><div class="v">Aragosta alla catalana<span class="meta">La langosta a la catalana, plato estrella de Alghero</span></div></div>
+    </div>
+    <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
+      <li><span class="star">✦</span><span><b>Centro histórico catalán</b>: callejear por la "Barceloneta sarda", torres y bastiones sobre el mar.</span></li>
+      <li><span class="star">✦</span><span><b>Playa Le Bombarde o Lazzaretto</b>: las mejores calas de arena cerca de la ciudad.</span></li>
+      <li><span class="star">✦</span><span><b>Atardecer desde las murallas</b> (Bastioni Marco Polo), con copa de Vermentino local.</span></li>
+      <li><span class="star">✦</span><span>Opcional si hay tiempo y ganas: excursión a la <b>Gruta de Neptuno</b> en Capo Caccia.</span></li>
+    </ul></div></div></div>
+  </article>
+
+  <!-- D8 -->
+  <article class="day">
+    <div class="day-head" onclick="tog(this)">
+      <div class="day-num"><span class="d">05</span><span class="m">Mié Ago</span></div>
+      <div class="day-title">
+        <span class="route">La Maddalena · día completo</span>
+        <span class="tags"><span class="tag grp">Pareja</span><span class="tag drive">🚗 ~2h30 + ferry</span><span class="tag">⭐ Archipiélago</span></span>
+      </div>
+      <div class="day-toggle">⌄</div>
+    </div>
+    <div class="day-body"><div class="day-inner"><div class="rows">
+      <div class="row"><div class="k">Trayecto</div><div class="v">Alghero → Palau (~2h30)<span class="meta">Salir pronto (8:00–8:30) para coger ferry sobre 11:00–11:30</span></div></div>
+      <div class="row"><div class="k">Ferry</div><div class="v">Palau ↔ La Maddalena<span class="meta">~15–20 min de travesía · salidas muy frecuentes (Maddalena Lines, etc.)</span></div></div>
+      <div class="row"><div class="k">El día</div><div class="v">Archipiélago de La Maddalena<span class="meta">La Maddalena y Caprera (Cala Coticcio); o excursión en barco a Spargi y Budelli</span></div></div>
+      <div class="row"><div class="k">Alojamiento</div><div class="v">Palau<span class="meta">La Vecchia Fonte (puerto) o Capo d'Orso Thalasso &amp; SPA (lujo, afueras)</span></div></div>
+      <div class="row"><div class="k">Cena</div><div class="v">Puerto de Palau</div></div>
+    </div>
+    <div class="note"><strong>Por qué dormir en Palau y no en la isla:</strong> con vuelo a las 11:20 del día siguiente, quedarse en tierra firme evita la prisa del ferry de vuelta por la mañana.</div>
+    <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
+      <li><span class="star">✦</span><span><b>Cala Coticcio</b> ("Tahití") en Caprera: una de las calas más espectaculares de Cerdeña.</span></li>
+      <li><span class="star">✦</span><span><b>Excursión en barco por el archipiélago</b>: Spargi, Santa Maria y la Spiaggia Rosa de Budelli (solo se ve desde el agua).</span></li>
+      <li><span class="star">✦</span><span><b>Caprera y la Casa-Museo de Garibaldi</b>, unida a La Maddalena por un puente.</span></li>
+      <li><span class="star">✦</span><span>Paseo por el <b>centro de La Maddalena</b> (Cala Gavetta) y, de vuelta, atardecer en <b>Palau</b>.</span></li>
+    </ul></div></div></div>
+  </article>
+
+  <!-- D9 -->
+  <article class="day">
+    <div class="day-head" onclick="tog(this)">
+      <div class="day-num"><span class="d">06</span><span class="m">Jue Ago</span></div>
+      <div class="day-title">
+        <span class="route">Vuelo de vuelta · Olbia</span>
+        <span class="tags"><span class="tag grp">Pareja</span><span class="tag drive">🚗 ~50 min</span></span>
+      </div>
+      <div class="day-toggle">⌄</div>
+    </div>
+    <div class="day-body"><div class="day-inner"><div class="rows">
+      <div class="row"><div class="k">Trayecto</div><div class="v">Palau → aeropuerto de Olbia (~50 min)</div></div>
+      <div class="row"><div class="k">Clave</div><div class="v">Devolver coche y vuelo · 11:20<span class="meta">Salir de Palau sobre las 8:30 para ir holgados</span></div></div>
+    </div></div></div>
+  </article>
+</section>
+
+<!-- ===== HOTELES ===== -->
+<section class="section wrap" id="hoteles">
+  <p class="eyebrow">Dónde dormir</p>
+  <h2>Alojamientos</h2>
+  <div class="ref-grid">
+    <div class="ref">
+      <h4>🌃 Olbia · noches 29 y 30 jul</h4>
+      <ul>
+        <li><span class="name">Grand Hotel President</span><span class="det">Céntrico, junto al puerto, parking seguro · 4,5★</span></li>
+        <li><span class="name">Jazz Hotel</span><span class="det">A 10 min del aeropuerto, piscina, diseño moderno</span></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>🏝️ Solanas · noches 31 jul y 1 ago</h4>
+      <ul>
+        <li><span class="name">Istedda Boutique Hotel</span><span class="det">Base familiar. Relax, piscina, playas cerca · 4,7★ · +39 351 601 4431</span></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>🏙️ Cagliari · noche 2 ago</h4>
+      <ul>
+        <li><span class="name">A elegir en el barrio histórico</span><span class="det">Zona Castello / Marina, para conocer la ciudad a pie</span></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>🧱 Alghero · noches 3 y 4 ago</h4>
+      <ul>
+        <li><span class="name">Hotel Catalunya</span><span class="det">Casco histórico, pedir vistas al mar · desayuno panorámico</span></li>
+        <li><span class="name">Hotel Domomea</span><span class="det">Boutique de 21 habitaciones, íntimo · 4,6★</span></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>⛵ Palau · noche 5 ago</h4>
+      <ul>
+        <li><span class="name">La Vecchia Fonte Hotel</span><span class="det">En el puerto, junto a restaurantes · +39 0789 709750</span></li>
+        <li><span class="name">Capo d'Orso Thalasso &amp; SPA</span><span class="det">Lujo con spa y marina propia, a las afueras · 4,6★</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMER ===== -->
+<section class="section wrap" id="comer">
+  <p class="eyebrow">Dónde comer</p>
+  <h2>Restaurantes</h2>
+  <div class="ref-grid">
+    <div class="ref">
+      <h4>🐟 Olbia</h4>
+      <ul>
+        <li><span class="name">Mere Ristorante</span><span class="det">Pescado y pasta · +39 329 293 7003</span></li>
+        <li><span class="name">Trattoria La Vecchia Olbia</span><span class="det">Auténtica, familiar · +39 0789 383803 · cierra dom</span></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>🏰 Castelsardo</h4>
+      <ul>
+        <li><span class="name">Amare · Alla Guardiola</span><span class="det">Terraza con vistas, marisco · +39 327 098 9927</span></li>
+        <li><span class="name">Raimondo's Pizzeria</span><span class="det">Mejor pizza de la zona · +39 328 643 9447</span></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>🦞 Villasimius</h4>
+      <ul>
+        <li><span class="name">Ristorante Sa Tankitta</span><span class="det">Marisco, familiar · +39 070 887 7948</span></li>
+        <li><span class="name">Sobat (fine dining)</span><span class="det">Menú degustación · +39 346 165 9986</span></li>
+        <li><span class="name">Balù Lounge &amp; Bistrot</span><span class="det">Terraza elegante · +39 070 792001</span></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>🌆 Cagliari</h4>
+      <ul>
+        <li><span class="name">La Taverna di Castello</span><span class="det">Marisco, barrio histórico · +39 070 311 0056</span></li>
+        <li><span class="name">Stella Marina di Montecristo</span><span class="det">Menú fijo de pescado, institución · +39 347 578 8964</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BARCO ===== -->
+<section class="section wrap" id="barco">
+  <p class="eyebrow">1 de agosto</p>
+  <h2>Barco privado · Villasimius</h2>
+  <div class="ref-grid">
+    <div class="ref">
+      <h4>⭐ Más exclusivo</h4>
+      <ul>
+        <li><span class="name">M.Y. Koral II — Luxury Private Charter</span><span class="det">Yate con patrón, aperitivo y comida a bordo, snorkel y scooter submarino · 5★ · +39 339 757 6664</span></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>🛥️ Familiar y flexible</h4>
+      <ul>
+        <li><span class="name">Best Vacation Ever (BVE)</span><span class="det">Excursiones privadas con patrón, gran trato · +39 327 739 9331</span></li>
+        <li><span class="name">Uniq Charter Sardinia</span><span class="det">Lancha privada con patrón, adaptan ruta · +39 332 211 5535</span></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>🧭 Si lleváis vosotros</h4>
+      <ul>
+        <li><span class="name">Pick &amp; Boat</span><span class="det">Alquiler con o sin patrón (alguien con licencia náutica) · +39 351 993 1853</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="note">Todos salen del puerto de Villasimius (~15 min del Istedda). <strong>Reservar ya:</strong> la primera semana de agosto se llena.</div>
+</section>
+
+<!-- ===== MALETA ===== -->
+<section class="section wrap" id="maleta">
+  <p class="eyebrow">Antes de salir</p>
+  <h2>Recordatorios y maleta</h2>
+  <div class="checklist">
+    <div class="check-card">
+      <h4>Reservas a confirmar</h4>
+      <label><input type="checkbox">Coche de alquiler (todo el viaje)</label>
+      <label><input type="checkbox">Barco privado · 1 de agosto</label>
+      <label><input type="checkbox">Hoteles (Olbia, Istedda, Cagliari, Alghero, Palau)</label>
+      <label><input type="checkbox">Restaurantes destacados</label>
+      <label><input type="checkbox">Ferry Palau ↔ La Maddalena</label>
+    </div>
+    <div class="check-card">
+      <h4>Documentos</h4>
+      <label><input type="checkbox">DNI / pasaporte (los 4)</label>
+      <label><input type="checkbox">Tarjetas de embarque (ida y vuelta)</label>
+      <label><input type="checkbox">Carné de conducir (+ licencia náutica si aplica)</label>
+      <label><input type="checkbox">Tarjeta sanitaria europea</label>
+      <label><input type="checkbox">Reservas y confirmaciones (offline)</label>
+    </div>
+    <div class="check-card">
+      <h4>Para el calor y la playa</h4>
+      <label><input type="checkbox">Protección solar alta + after sun</label>
+      <label><input type="checkbox">Bañadores, toallas de playa, gorra/gafas</label>
+      <label><input type="checkbox">Calzado de agua (calas con rocas)</label>
+      <label><input type="checkbox">Bolsa estanca para el barco</label>
+      <label><input type="checkbox">Adaptador no necesario (enchufe tipo F/L, igual que España)</label>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Itinerario familiar · Cerdeña, verano 2026 · 29 jul – 6 ago<br>
+  Hecho con <span class="heart">♥</span> para disfrutarlo juntos
+</footer>
+
+<script>
+  function tog(el){ el.closest('.day').classList.toggle('open'); }
+  // Smooth-close others on small screens is optional; keep simple & independent.
+</script>
+</body>
+</html>
