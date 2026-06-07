@@ -91,6 +91,17 @@
   .note{margin-top:.9rem;background:var(--sand);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:.7rem .9rem;font-size:.86rem;color:var(--ink-soft)}
   .note strong{color:var(--ink);font-weight:500}
 
+  /* ===== pin ubicación google maps ===== */
+  .pin{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;font-weight:500;color:var(--terracotta);
+    background:rgba(199,91,57,.10);border:1px solid rgba(199,91,57,.28);
+    padding:.22rem .6rem .22rem .48rem;border-radius:999px;text-decoration:none;
+    white-space:nowrap;transition:.18s;vertical-align:middle;margin-left:.15rem}
+  .pin:hover{background:rgba(199,91,57,.18);border-color:rgba(199,91,57,.5)}
+  .pin svg{width:13px;height:13px;flex-shrink:0;fill:currentColor}
+  .pin.sea{color:var(--sea-deep);background:rgba(29,110,110,.10);border-color:rgba(29,110,110,.28)}
+  .pin.sea:hover{background:rgba(29,110,110,.18);border-color:rgba(29,110,110,.5)}
+  .ref li .pin{margin-top:.25rem;align-self:flex-start}
+
   /* ===== imprescindibles ===== */
   .must{margin-top:1rem;background:linear-gradient(180deg,rgba(199,91,57,.06),rgba(199,91,57,.02));border:1px solid rgba(199,91,57,.18);border-radius:14px;padding:.85rem 1rem}
   .must .must-h{display:flex;align-items:center;gap:.45rem;font-family:'Fraunces',serif;font-weight:600;font-size:.96rem;color:var(--terracotta);margin-bottom:.55rem}
@@ -142,6 +153,8 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pinic" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></symbol></svg>
+
 <nav class="nav">
   <div class="nav-inner">
     <span class="nav-brand">🌊 Cerdeña '26</span>
@@ -179,8 +192,8 @@
       <p><strong>Llegan:</strong> Cagliari, vie 31 jul · 16:20<br><strong>Se van:</strong> Cagliari, dom 2 ago · 10:30</p>
     </div>
     <div class="info-card">
-      <div class="ic">🚗</div><h4>Coche</h4>
-      <p>Ya alquilado. Recogida y entrega en la <strong>terminal del aeropuerto de Olbia</strong>. ~13–14 h de conducción en 9 días.</p>
+      <div class="ic">🚗</div><h4>Coche de alquiler</h4>
+      <p>Ya reservado · recogida y entrega en la <strong>terminal del aeropuerto de Olbia</strong>.<br>Proveedor: <strong>Keddy</strong><br>Reserva: <strong>D014208723</strong><br>Confirmación: <strong>1203295958</strong></p>
     </div>
     <div class="info-card">
       <div class="ic">🏖️</div><h4>El plan</h4>
@@ -213,31 +226,89 @@
       </g>
 
       <!-- ===== trayecto del viaje (orden de pernocta) ===== -->
-      <!-- Olbia(300,150) > Istedda(290,480) > Cagliari(210,505) > Alghero(72,235) > Palau(232,72) > vuelo Olbia(300,150) -->
-      <path id="ruta" d="M300,150 C320,260 330,400 290,480 C270,498 240,505 210,505
-                         C150,500 95,360 72,235 C62,180 130,120 232,72
-                         C265,90 290,120 300,150"
+      <!-- Olbia(300,150)>Orosei(358,300)>Istedda(290,480)>Bosa(85,310)>Alghero(72,235)>Castelsardo(120,118)>Palau(232,72)>vuelo Olbia(300,150) -->
+      <path id="ruta" d="M300,150 C345,200 360,250 358,300 C355,370 330,440 290,480
+                         C255,500 180,470 130,430 C95,400 88,355 85,310
+                         C82,280 76,260 72,235 C70,190 95,150 120,118
+                         C150,90 195,88 232,72 C265,90 290,120 300,150"
             fill="none" stroke="#c75b39" stroke-width="2.4" stroke-linecap="round"
             stroke-dasharray="2 9" opacity=".75">
-        <animate attributeName="stroke-dashoffset" from="220" to="0" dur="6s" repeatCount="indefinite"/>
+        <animate attributeName="stroke-dashoffset" from="260" to="0" dur="7s" repeatCount="indefinite"/>
       </path>
       <!-- punto viajero que recorre la ruta -->
       <circle r="5" fill="#c75b39" stroke="#fff" stroke-width="1.5">
-        <animateMotion dur="6s" repeatCount="indefinite" rotate="auto"
-          path="M300,150 C320,260 330,400 290,480 C270,498 240,505 210,505 C150,500 95,360 72,235 C62,180 130,120 232,72 C265,90 290,120 300,150"/>
+        <animateMotion dur="7s" repeatCount="indefinite" rotate="auto"
+          path="M300,150 C345,200 360,250 358,300 C355,370 330,440 290,480 C255,500 180,470 130,430 C95,400 88,355 85,310 C82,280 76,260 72,235 C70,190 95,150 120,118 C150,90 195,88 232,72 C265,90 290,120 300,150"/>
       </circle>
 
       <!-- ===== marcadores ===== -->
-      <!-- Olbia (NE) - alojamiento + aeropuerto -->
+      <!-- Olbia (NE) - alojamiento + aeropuerto · noche 1 -->
       <g transform="translate(300,150)">
         <rect x="-13" y="-13" width="26" height="26" rx="8" fill="#1d6e6e"/>
         <text x="0" y="5" text-anchor="middle" font-size="14" fill="#fff">🛏</text>
         <circle cx="15" cy="-15" r="11" fill="#d9a441" stroke="#fff" stroke-width="1.5"/>
-        <text x="15" y="-11" text-anchor="middle" font-size="11" font-weight="600" fill="#fff" font-family="Outfit,sans-serif">1·2</text>
+        <text x="15" y="-11" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Outfit,sans-serif">1</text>
         <text class="m-label" x="18" y="2">Olbia ✈</text>
-        <text class="m-label-sm" x="18" y="17">Llegada · 2 noches</text>
+        <text class="m-label-sm" x="18" y="17">Llegada · 1 noche</text>
       </g>
-      <!-- Palau (N) - alojamiento + ferry Maddalena -->
+      <!-- Orosei (E) - alojamiento · noche 2 -->
+      <g transform="translate(358,300)">
+        <rect x="-13" y="-13" width="26" height="26" rx="8" fill="#1d6e6e"/>
+        <text x="0" y="5" text-anchor="middle" font-size="14" fill="#fff">🛏</text>
+        <circle cx="15" cy="-15" r="11" fill="#d9a441" stroke="#fff" stroke-width="1.5"/>
+        <text x="15" y="-11" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Outfit,sans-serif">2</text>
+        <text class="m-label" x="18" y="2">Orosei</text>
+        <text class="m-label-sm" x="18" y="17">Costa este · 1 noche</text>
+      </g>
+      <!-- Solanas / Istedda (SE) - base familiar · noches 3·4 -->
+      <g transform="translate(290,480)">
+        <rect x="-13" y="-13" width="26" height="26" rx="8" fill="#1d6e6e"/>
+        <text x="0" y="5" text-anchor="middle" font-size="14" fill="#fff">🛏</text>
+        <circle cx="15" cy="-15" r="11" fill="#d9a441" stroke="#fff" stroke-width="1.5"/>
+        <text x="15" y="-11" text-anchor="middle" font-size="11" font-weight="600" fill="#fff" font-family="Outfit,sans-serif">3·4</text>
+        <text class="m-label" x="18" y="0">Istedda</text>
+        <text class="m-label-sm" x="18" y="15">Solanas · 2 noches</text>
+      </g>
+      <!-- Cagliari (S) - visita + aeropuerto hijos (no se duerme) -->
+      <g transform="translate(210,505)">
+        <circle r="11" fill="#c75b39"/>
+        <text x="0" y="4" text-anchor="middle" font-size="11" fill="#fff">★</text>
+        <text class="m-label" x="0" y="28" text-anchor="middle">Cagliari ✈</text>
+        <text class="m-label-sm" x="0" y="43" text-anchor="middle">Aeropuerto hijos</text>
+      </g>
+      <!-- Villasimius (SE) - visita / barco -->
+      <g transform="translate(322,460)">
+        <circle r="11" fill="#c75b39"/>
+        <text x="0" y="4" text-anchor="middle" font-size="11" fill="#fff">★</text>
+        <text class="m-label" x="16" y="-6">Villasimius ⛵</text>
+      </g>
+      <!-- Bosa (O) - alojamiento · noche 5 -->
+      <g transform="translate(85,310)">
+        <rect x="-13" y="-13" width="26" height="26" rx="8" fill="#1d6e6e"/>
+        <text x="0" y="5" text-anchor="middle" font-size="14" fill="#fff">🛏</text>
+        <circle cx="15" cy="-15" r="11" fill="#d9a441" stroke="#fff" stroke-width="1.5"/>
+        <text x="15" y="-11" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Outfit,sans-serif">5</text>
+        <text class="m-label" x="-16" y="4" text-anchor="end">Bosa</text>
+      </g>
+      <!-- Alghero (O) - alojamiento · noche 6 -->
+      <g transform="translate(72,235)">
+        <rect x="-13" y="-13" width="26" height="26" rx="8" fill="#1d6e6e"/>
+        <text x="0" y="5" text-anchor="middle" font-size="14" fill="#fff">🛏</text>
+        <circle cx="15" cy="-15" r="11" fill="#d9a441" stroke="#fff" stroke-width="1.5"/>
+        <text x="15" y="-11" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Outfit,sans-serif">6</text>
+        <text class="m-label" x="-16" y="0" text-anchor="end">Alghero</text>
+        <text class="m-label-sm" x="-16" y="15" text-anchor="end">1 noche</text>
+      </g>
+      <!-- Castelsardo (NO) - alojamiento · noche 7 -->
+      <g transform="translate(120,118)">
+        <rect x="-13" y="-13" width="26" height="26" rx="8" fill="#1d6e6e"/>
+        <text x="0" y="5" text-anchor="middle" font-size="14" fill="#fff">🛏</text>
+        <circle cx="15" cy="-15" r="11" fill="#d9a441" stroke="#fff" stroke-width="1.5"/>
+        <text x="15" y="-11" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Outfit,sans-serif">7</text>
+        <text class="m-label" x="-16" y="0" text-anchor="end">Castelsardo</text>
+        <text class="m-label-sm" x="-16" y="15" text-anchor="end">1 noche</text>
+      </g>
+      <!-- Palau (N) - alojamiento + ferry · noche 8 -->
       <g transform="translate(232,72)">
         <rect x="-13" y="-13" width="26" height="26" rx="8" fill="#1d6e6e"/>
         <text x="0" y="5" text-anchor="middle" font-size="14" fill="#fff">🛏</text>
@@ -247,55 +318,10 @@
         <text class="m-label-sm" x="-16" y="2" text-anchor="end">Última noche</text>
       </g>
       <!-- La Maddalena (N, islita) - visita -->
-      <g transform="translate(250,40)">
+      <g transform="translate(252,38)">
         <circle r="11" fill="#c75b39"/>
         <text x="0" y="4" text-anchor="middle" font-size="11" fill="#fff">★</text>
         <text class="m-label" x="16" y="4">La Maddalena</text>
-      </g>
-      <!-- Castelsardo (NO) - visita -->
-      <g transform="translate(120,118)">
-        <circle r="11" fill="#c75b39"/>
-        <text x="0" y="4" text-anchor="middle" font-size="11" fill="#fff">★</text>
-        <text class="m-label" x="-16" y="4" text-anchor="end">Castelsardo</text>
-      </g>
-      <!-- Alghero (O) - alojamiento -->
-      <g transform="translate(72,235)">
-        <rect x="-13" y="-13" width="26" height="26" rx="8" fill="#1d6e6e"/>
-        <text x="0" y="5" text-anchor="middle" font-size="14" fill="#fff">🛏</text>
-        <circle cx="15" cy="-15" r="11" fill="#d9a441" stroke="#fff" stroke-width="1.5"/>
-        <text x="15" y="-11" text-anchor="middle" font-size="11" font-weight="600" fill="#fff" font-family="Outfit,sans-serif">6·7</text>
-        <text class="m-label" x="-16" y="0" text-anchor="end">Alghero</text>
-        <text class="m-label-sm" x="-16" y="15" text-anchor="end">2 noches</text>
-      </g>
-      <!-- Bosa (O) - visita -->
-      <g transform="translate(85,310)">
-        <circle r="11" fill="#c75b39"/>
-        <text x="0" y="4" text-anchor="middle" font-size="11" fill="#fff">★</text>
-        <text class="m-label" x="-16" y="4" text-anchor="end">Bosa</text>
-      </g>
-      <!-- Cagliari (S) - alojamiento + aeropuerto hijos -->
-      <g transform="translate(210,505)">
-        <rect x="-13" y="-13" width="26" height="26" rx="8" fill="#1d6e6e"/>
-        <text x="0" y="5" text-anchor="middle" font-size="14" fill="#fff">🛏</text>
-        <circle cx="15" cy="-15" r="11" fill="#d9a441" stroke="#fff" stroke-width="1.5"/>
-        <text x="15" y="-11" text-anchor="middle" font-size="12" font-weight="600" fill="#fff" font-family="Outfit,sans-serif">5</text>
-        <text class="m-label" x="0" y="28" text-anchor="middle">Cagliari ✈</text>
-        <text class="m-label-sm" x="0" y="43" text-anchor="middle">1 noche · hijos</text>
-      </g>
-      <!-- Solanas / Istedda (SE) - alojamiento base familiar -->
-      <g transform="translate(290,480)">
-        <rect x="-13" y="-13" width="26" height="26" rx="8" fill="#1d6e6e"/>
-        <text x="0" y="5" text-anchor="middle" font-size="14" fill="#fff">🛏</text>
-        <circle cx="15" cy="-15" r="11" fill="#d9a441" stroke="#fff" stroke-width="1.5"/>
-        <text x="15" y="-11" text-anchor="middle" font-size="11" font-weight="600" fill="#fff" font-family="Outfit,sans-serif">3·4</text>
-        <text class="m-label" x="18" y="0">Istedda</text>
-        <text class="m-label-sm" x="18" y="15">Solanas · 2 noches</text>
-      </g>
-      <!-- Villasimius (SE) - visita / barco -->
-      <g transform="translate(322,460)">
-        <circle r="11" fill="#c75b39"/>
-        <text x="0" y="4" text-anchor="middle" font-size="11" fill="#fff">★</text>
-        <text class="m-label" x="16" y="-8">Villasimius ⛵</text>
       </g>
     </svg>
     <div class="map-legend">
@@ -308,7 +334,7 @@
       <span>✈ Aeropuerto &nbsp;·&nbsp; ⛴ Ferry &nbsp;·&nbsp; ⛵ Barco</span>
     </div>
   </div>
-  <div class="note">El viaje dibuja un círculo lógico: bajamos del noreste al sur por el centro, subimos por la costa oeste y cerramos en el norte (La Maddalena) antes de volar desde Olbia.</div>
+  <div class="note">El viaje dibuja un círculo completo: Olbia, bajada por la costa este (Orosei) hasta el sur familiar (Istedda), y subida por la costa oeste (Bosa, Alghero, Castelsardo) hasta cerrar en el norte con La Maddalena, antes de volar desde Olbia.</div>
 </section>
 
 <!-- ===== DÍAS ===== -->
@@ -321,7 +347,6 @@
     <span>👆 Toca cada día para abrirlo</span>
   </div>
 
-  <!-- D1 -->
   <article class="day open">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">29</span><span class="m">Mié Jul</span></div>
@@ -332,9 +357,9 @@
       <div class="day-toggle">⌄</div>
     </div>
     <div class="day-body"><div class="day-inner"><div class="rows">
-      <div class="row"><div class="k">Trayecto</div><div class="v">Aeropuerto de Olbia → centro de Olbia<span class="meta">Recoger coche de alquiler a la llegada (19:30)</span></div></div>
-      <div class="row"><div class="k">Alojamiento</div><div class="v">Olbia<span class="meta">Grand Hotel President (céntrico, parking) o Jazz Hotel (junto al aeropuerto, piscina)</span></div></div>
-      <div class="row"><div class="k">Cena</div><div class="v">Mere Ristorante<span class="meta">Pescado y pasta en el casco antiguo · hasta 22:30</span></div></div>
+      <div class="row"><div class="k">Trayecto</div><div class="v">Aeropuerto de Olbia → centro de Olbia<span class="meta">Recoger coche de alquiler a la llegada (19:30)</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/guG3sc64VAG3AVYx9"><svg><use href="#pinic"/></svg>Aeropuerto Olbia</a></div></div>
+      <div class="row"><div class="k">Alojamiento</div><div class="v">Casa Amerì Affittacamere<span class="meta">Via Venezia Giulia 22, Olbia</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/f4y14ePjkvvnFA2C8"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
+      <div class="row"><div class="k">Cena</div><div class="v">Mere Ristorante<span class="meta">Pescado y pasta en el casco antiguo · hasta 22:30</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Mere+Ristorante+Olbia"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
     </div>
     <div class="note">Tras un vuelo que llega de noche, conviene una cena tranquila y a pie. Compra agua/desayuno de camino del aeropuerto si el hotel no lo incluye.</div>
     <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
@@ -344,57 +369,53 @@
     </div></div>
   </article>
 
-  <!-- D2 -->
   <article class="day">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">30</span><span class="m">Jue Jul</span></div>
       <div class="day-title">
-        <span class="route">Castelsardo</span>
-        <span class="tags"><span class="tag grp">Pareja</span><span class="tag drive">🚗 ~1h40 / tramo</span><span class="tag">Ida y vuelta ~3h20</span></span>
+        <span class="route">Bajada por la costa este · Orosei</span>
+        <span class="tags"><span class="tag grp">Pareja</span><span class="tag drive">🚗 ~2h</span><span class="tag">Costa este</span></span>
       </div>
       <div class="day-toggle">⌄</div>
     </div>
     <div class="day-body"><div class="day-inner"><div class="rows">
-      <div class="row"><div class="k">Trayecto</div><div class="v">Olbia → Castelsardo → Olbia<span class="meta">~1h40 cada sentido por la costa norte</span></div></div>
-      <div class="row"><div class="k">Mañana</div><div class="v">Casco medieval y Castillo de los Doria<span class="meta">Vistas a Córcega, callejuelas, artesanía de cestería</span></div></div>
-      <div class="row"><div class="k">Comida</div><div class="v">Amare · Alla Guardiola (Castelsardo)<span class="meta">Terraza espectacular sobre el pueblo · reservar</span></div></div>
-      <div class="row"><div class="k">Alojamiento</div><div class="v">Olbia (2ª noche)</div></div>
-      <div class="row"><div class="k">Cena</div><div class="v">Trattoria La Vecchia Olbia<span class="meta">Auténtica y familiar · cerrado domingos</span></div></div>
+      <div class="row"><div class="k">Trayecto</div><div class="v">Olbia → Orosei (~2h)<span class="meta">Ruta por la costa este: San Teodoro, Posada, Golfo di Orosei</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Orosei+Sardegna+centro"><svg><use href="#pinic"/></svg>Orosei</a></div></div>
+      <div class="row"><div class="k">Tarde</div><div class="v">Casco histórico de Orosei<span class="meta">Pueblo medieval con sus iglesias y la Piazza del Popolo</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Piazza+del+Popolo+Orosei"><svg><use href="#pinic"/></svg>Centro</a></div></div>
+      <div class="row"><div class="k">Playa</div><div class="v">Cala Liberotto / Bidderosa<span class="meta">Calas de arena blanca y pinares al norte de Orosei</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Cala+Liberotto+Orosei"><svg><use href="#pinic"/></svg>Cala Liberotto</a></div></div>
+      <div class="row"><div class="k">Alojamiento</div><div class="v">Su Barchile Hotel Ristorante<span class="meta">Via F. I. Mannu 5, Orosei · 1 noche</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/cPtqkVCY1GDM6mSr8"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
+      <div class="row"><div class="k">Cena</div><div class="v">Casco antiguo de Orosei<a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=ristoranti+centro+Orosei"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
     </div>
-    <div class="note">Alternativa de comida más informal en Castelsardo: <strong>Raimondo's Pizzeria Contemporanea</strong>, de las mejores pizzas de la zona.</div>
     <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
-      <li><span class="star">✦</span><span><b>Castillo de los Doria</b> (s. XII): subir hasta lo alto por las vistas del Golfo de Asinara, las mejores del pueblo.</span></li>
-      <li><span class="star">✦</span><span><b>Museo della Cestería</b> dentro del castillo: la cestería de palma enana, artesanía emblemática de Castelsardo.</span></li>
-      <li><span class="star">✦</span><span><b>Catedral de Sant'Antonio Abate</b>: campanario con cúpula de cerámica de colores y terraza asomada al mar.</span></li>
-      <li><span class="star">✦</span><span><b>Perderse por los callejones empedrados</b> del centro medieval: escaleras, casas de colores y talleres de artesanos.</span></li>
-      <li><span class="star">✦</span><span>De camino, la <b>Roccia dell'Elefante</b>: curiosa roca con forma de elefante junto a la carretera.</span></li>
+      <li><span class="star">✦</span><span>El <b>Golfo di Orosei</b>: uno de los tramos de costa más espectaculares de Cerdeña, calas de aguas esmeralda entre acantilados.</span></li>
+      <li><span class="star">✦</span><span><b>Cala Liberotto y el oasis de Bidderosa</b>: arena blanca y pinares (Bidderosa tiene acceso con cupo en verano, conviene reservar).</span></li>
+      <li><span class="star">✦</span><span><b>Casco histórico medieval</b> de Orosei: la Piazza del Popolo, la iglesia de San Giacomo y el mirador sobre el valle del Cedrino.</span></li>
+      <li><span class="star">✦</span><span>Romper el viaje aquí convierte el traslado al sur en un día de descubrimiento, no en horas de coche.</span></li>
     </ul></div>
     </div></div>
   </article>
 
-  <!-- D3 -->
   <article class="day fam">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">31</span><span class="m">Vie Jul</span></div>
       <div class="day-title">
-        <span class="route">Traslado al sur · llegan los hijos</span>
-        <span class="tags"><span class="tag grp">Pareja → +hijos</span><span class="tag drive">🚗 ~2h45 + 45 min</span></span>
+        <span class="route">Orosei → sur · llegan los hijos</span>
+        <span class="tags"><span class="tag grp">Pareja → +hijos</span><span class="tag drive">🚗 ~2h15 + 45 min</span></span>
       </div>
       <div class="day-toggle">⌄</div>
     </div>
     <div class="day-body"><div class="day-inner"><div class="rows">
-      <div class="row"><div class="k">Trayecto</div><div class="v">Olbia → aeropuerto de Cagliari (~2h45)<span class="meta">Después: Cagliari → Istedda / Solanas (~45 min)</span></div></div>
-      <div class="row"><div class="k">Clave</div><div class="v">Recoger a los hijos · Cagliari 16:20<span class="meta">Salir de Olbia por la mañana, sin entretenerse</span></div></div>
-      <div class="row"><div class="k">Alojamiento</div><div class="v">Istedda Boutique Hotel (Solanas)<span class="meta">Base familiar · noches 31 jul, 1 ago</span></div></div>
-      <div class="row"><div class="k">Cena</div><div class="v">Ristorante Sa Tankitta (Villasimius)<span class="meta">Marisco, ambiente familiar · reservar sí o sí</span></div></div>
+      <div class="row"><div class="k">Trayecto</div><div class="v">Orosei → aeropuerto de Cagliari (~2h15)<span class="meta">Después: Cagliari → Istedda / Solanas (~45 min)</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/AWQ7zRp8xYAaciQo7"><svg><use href="#pinic"/></svg>Aeropuerto Cagliari</a></div></div>
+      <div class="row"><div class="k">Clave</div><div class="v">Recoger a los hijos · Cagliari 16:20<span class="meta">Salir de Orosei a media mañana, con margen</span></div></div>
+      <div class="row"><div class="k">Alojamiento</div><div class="v">Istedda Boutique Hotel (Solanas)<span class="meta">Base familiar · noches 31 jul, 1 ago</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/GrVD2YaTfbr4A6Py5"><svg><use href="#pinic"/></svg>Hotel Istedda</a></div></div>
+      <div class="row"><div class="k">Cena</div><div class="v">Ristorante Sa Tankitta (Villasimius)<span class="meta">Marisco, ambiente familiar · reservar sí o sí</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Ristorante+Sa+Tankitta+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
     </div>
     <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
       <li><span class="star">✦</span><span><b>Reencuentro con los hijos</b> en Cagliari y primer chapuzón juntos en la costa de Solanas al llegar al Istedda.</span></li>
       <li><span class="star">✦</span><span>Si la llegada lo permite, <b>atardecer desde el hotel</b> o la playa de Solanas para arrancar la parte familiar.</span></li>
-    </ul></div></div></div>
+    </ul></div>
+    </div></div>
   </article>
 
-  <!-- D4 -->
   <article class="day fam">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">01</span><span class="m">Sáb Ago</span></div>
@@ -406,9 +427,9 @@
     </div>
     <div class="day-body"><div class="day-inner"><div class="rows">
       <div class="row"><div class="k">Trayecto</div><div class="v">Istedda → puerto de Villasimius (~15 min)</div></div>
-      <div class="row"><div class="k">El día</div><div class="v">Charter privado por la costa sureste<span class="meta">Capo Carbonara, Isola dei Cavoli, Punta Molentis · baño y snorkel</span></div></div>
+      <div class="row"><div class="k">El día</div><div class="v">Charter privado por la costa sureste<span class="meta">Capo Carbonara, Isola dei Cavoli, Punta Molentis · baño y snorkel</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Porto+turistico+Villasimius"><svg><use href="#pinic"/></svg>Puerto Villasimius</a></div></div>
       <div class="row"><div class="k">Comida</div><div class="v">A bordo<span class="meta">Incluida en el charter (aperitivo/almuerzo)</span></div></div>
-      <div class="row"><div class="k">Cena</div><div class="v">Sobat (fine dining) o Balù Lounge<span class="meta">Algo especial para celebrar el día en familia</span></div></div>
+      <div class="row"><div class="k">Cena</div><div class="v">Sobat (fine dining) o Balù Lounge<span class="meta">Algo especial para celebrar el día en familia</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Sobat+Restaurant+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
     </div>
     <div class="note">Ver sección <a href="#barco" style="color:var(--sea-deep)">Barco privado</a> para las empresas recomendadas y teléfonos.</div>
     <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
@@ -420,106 +441,107 @@
     </div></div>
   </article>
 
-  <!-- D5 -->
   <article class="day fam">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">02</span><span class="m">Dom Ago</span></div>
       <div class="day-title">
-        <span class="route">Despedida · Cagliari ciudad</span>
-        <span class="tags"><span class="tag grp">+hijos → Pareja</span><span class="tag drive">🚗 ~40 min + 15 min</span></span>
+        <span class="route">Despedida · Cagliari → Bosa</span>
+        <span class="tags"><span class="tag grp">+hijos → Pareja</span><span class="tag drive">🚗 ~40 min + 2h15</span></span>
       </div>
       <div class="day-toggle">⌄</div>
     </div>
     <div class="day-body"><div class="day-inner"><div class="rows">
-      <div class="row"><div class="k">Trayecto</div><div class="v">Istedda → aeropuerto de Cagliari (~40 min)<span class="meta">Salir sobre las 9:00–9:15 · luego centro de Cagliari (~15 min)</span></div></div>
+      <div class="row"><div class="k">Trayecto</div><div class="v">Istedda → aeropuerto de Cagliari (~40 min)<span class="meta">Salir sobre las 9:00–9:15 para dejarlos a las 10:30</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/AWQ7zRp8xYAaciQo7"><svg><use href="#pinic"/></svg>Aeropuerto Cagliari</a></div></div>
       <div class="row"><div class="k">Clave</div><div class="v">Dejar a los hijos · Cagliari 10:30</div></div>
-      <div class="row"><div class="k">Tarde</div><div class="v">Conocer Cagliari<span class="meta">Barrio del Castello, bastión de Saint Remy, catedral, la Marina</span></div></div>
-      <div class="row"><div class="k">Alojamiento</div><div class="v">Cagliari (1 noche)</div></div>
-      <div class="row"><div class="k">Comer/Cenar</div><div class="v">La Taverna di Castello · Stella Marina di Montecristo<span class="meta">La Stella: menú fijo de pescado, institución local · reserva por WhatsApp</span></div></div>
+      <div class="row"><div class="k">Mediodía</div><div class="v">Conocer Cagliari<span class="meta">Barrio del Castello, bastión de Saint Remy, catedral, la Marina</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bastione+di+Saint+Remy+Cagliari"><svg><use href="#pinic"/></svg>Castello Cagliari</a></div></div>
+      <div class="row"><div class="k">Tarde</div><div class="v">Cagliari → Bosa (~2h15)<span class="meta">Subida por la costa oeste hasta dormir en Bosa</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bosa+Sardegna+centro+storico"><svg><use href="#pinic"/></svg>Bosa</a></div></div>
+      <div class="row"><div class="k">Alojamiento</div><div class="v">Bosa (1 noche)<span class="meta">Pueblo de casas de colores sobre el río Temo</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=hotel+Bosa+centro+storico"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
+      <div class="row"><div class="k">Cena</div><div class="v">Casco antiguo de Bosa<a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=ristoranti+centro+Bosa"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
     </div>
     <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
-      <li><span class="star">✦</span><span><b>Barrio del Castello</b>: el casco histórico amurallado en lo alto, callejear entre palacios y miradores.</span></li>
-      <li><span class="star">✦</span><span><b>Bastione di Saint Remy</b>: terraza panorámica sobre toda la ciudad y el mar.</span></li>
-      <li><span class="star">✦</span><span><b>Catedral de Santa Maria</b> y las torres pisanas (Torre dell'Elefante / San Pancrazio).</span></li>
-      <li><span class="star">✦</span><span>Paseo y cena por <b>la Marina</b>, el barrio de tabernas junto al puerto.</span></li>
-    </ul></div></div></div>
+      <li><span class="star">✦</span><span><b>Despedida de los hijos</b> y mañana para vosotros en <b>Cagliari</b>: Castello, Bastione di Saint Remy y la Marina.</span></li>
+      <li><span class="star">✦</span><span>Llegada a <b>Bosa</b> al atardecer: las casas de colores de <b>Sa Costa</b> reflejadas en el río Temo, la mejor hora para verlas.</span></li>
+      <li><span class="star">✦</span><span>Cena tranquila en el casco de Bosa, ya en modo pareja para el tramo final del viaje.</span></li>
+    </ul></div>
+    </div></div>
   </article>
 
-  <!-- D6 -->
   <article class="day">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">03</span><span class="m">Lun Ago</span></div>
       <div class="day-title">
-        <span class="route">Cagliari → Bosa → Alghero</span>
-        <span class="tags"><span class="tag grp">Pareja</span><span class="tag drive">🚗 ~2h15 + 1h</span></span>
+        <span class="route">Bosa → Alghero</span>
+        <span class="tags"><span class="tag grp">Pareja</span><span class="tag drive">🚗 ~1h</span></span>
       </div>
       <div class="day-toggle">⌄</div>
     </div>
     <div class="day-body"><div class="day-inner"><div class="rows">
-      <div class="row"><div class="k">Trayecto</div><div class="v">Cagliari → Bosa (~2h15) → Alghero (~1h)<span class="meta">Ruta panorámica por la costa oeste</span></div></div>
-      <div class="row"><div class="k">Parada</div><div class="v">Bosa<span class="meta">Casas de colores sobre el río Temo, castillo de Serravalle · comida y paseo</span></div></div>
-      <div class="row"><div class="k">Alojamiento</div><div class="v">Alghero<span class="meta">Hotel Catalunya (vistas al mar) o Hotel Domomea (boutique) · noches 3 y 4 ago</span></div></div>
-      <div class="row"><div class="k">Cena</div><div class="v">Casco antiguo de Alghero</div></div>
+      <div class="row"><div class="k">Trayecto</div><div class="v">Bosa → Alghero (~1h)<span class="meta">Carretera costera panorámica, una de las más bonitas de la isla</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hotel+Catalunya+Alghero"><svg><use href="#pinic"/></svg>Alghero</a></div></div>
+      <div class="row"><div class="k">Mañana</div><div class="v">Bosa<span class="meta">Castello Malaspina y paseo por la orilla del Temo antes de salir</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Castello+Malaspina+Bosa"><svg><use href="#pinic"/></svg>Castillo</a></div></div>
+      <div class="row"><div class="k">Tarde</div><div class="v">Alghero<span class="meta">Casco histórico amurallado catalán</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Centro+storico+Alghero"><svg><use href="#pinic"/></svg>Casco antiguo</a></div></div>
+      <div class="row"><div class="k">Alojamiento</div><div class="v">Alghero (1 noche)<span class="meta">Hotel Catalunya (vistas al mar) o Hotel Domomea (boutique)</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hotel+Catalunya+Alghero"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
+      <div class="row"><div class="k">Cena</div><div class="v">Aragosta alla catalana<span class="meta">La langosta a la catalana, plato estrella de Alghero</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=ristoranti+centro+storico+Alghero"><svg><use href="#pinic"/></svg>Restaurantes</a></div></div>
     </div>
     <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
-      <li><span class="star">✦</span><span><b>Bosa:</b> las casas de colores de <b>Sa Costa</b> reflejadas en el río Temo, la postal del pueblo.</span></li>
-      <li><span class="star">✦</span><span><b>Castello Malaspina</b> (de Serravalle) en lo alto de Bosa, con vistas del valle y la desembocadura.</span></li>
-      <li><span class="star">✦</span><span>Paseo por la <b>orilla del Temo</b> y las antiguas curtidurías (Sas Conzas).</span></li>
-      <li><span class="star">✦</span><span>Llegada a Alghero al atardecer: primer <b>paseo por las murallas</b> sobre el mar.</span></li>
-    </ul></div></div></div>
+      <li><span class="star">✦</span><span><b>Carretera Bosa–Alghero</b>: una de las rutas costeras más espectaculares de Cerdeña (mirador de los buitres leonados).</span></li>
+      <li><span class="star">✦</span><span><b>Castello Malaspina</b> de Bosa por la mañana antes de partir.</span></li>
+      <li><span class="star">✦</span><span><b>Centro histórico catalán de Alghero</b>: la "Barceloneta sarda", murallas y bastiones sobre el mar.</span></li>
+      <li><span class="star">✦</span><span>Cena de <b>langosta a la catalana</b> con Vermentino local: el plato emblema de Alghero.</span></li>
+    </ul></div>
+    </div></div>
   </article>
 
-  <!-- D7 -->
   <article class="day">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">04</span><span class="m">Mar Ago</span></div>
       <div class="day-title">
-        <span class="route">Alghero · playa y casco catalán</span>
-        <span class="tags"><span class="tag grp">Pareja</span><span class="tag drive">🚗 ~15–20 min</span></span>
+        <span class="route">Alghero → Castelsardo</span>
+        <span class="tags"><span class="tag grp">Pareja</span><span class="tag drive">🚗 ~1h</span><span class="tag">Playa + pueblo medieval</span></span>
       </div>
       <div class="day-toggle">⌄</div>
     </div>
     <div class="day-body"><div class="day-inner"><div class="rows">
-      <div class="row"><div class="k">Trayecto</div><div class="v">Local · playas Le Bombarde / Lazzaretto (~15–20 min)</div></div>
-      <div class="row"><div class="k">Mañana</div><div class="v">Playa</div></div>
-      <div class="row"><div class="k">Tarde</div><div class="v">Casco histórico amurallado catalán<span class="meta">Murallas, callejuelas, ambiente catalán de Cerdeña</span></div></div>
-      <div class="row"><div class="k">Cena</div><div class="v">Aragosta alla catalana<span class="meta">La langosta a la catalana, plato estrella de Alghero</span></div></div>
+      <div class="row"><div class="k">Trayecto</div><div class="v">Alghero → Castelsardo (~1h)<span class="meta">Parada opcional en Capo Caccia / Gruta de Neptuno de camino</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Castelsardo+centro+storico"><svg><use href="#pinic"/></svg>Castelsardo</a></div></div>
+      <div class="row"><div class="k">Mañana</div><div class="v">Playa cerca de Alghero<span class="meta">Le Bombarde o Lazzaretto antes de salir</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Spiaggia+Le+Bombarde+Alghero"><svg><use href="#pinic"/></svg>Le Bombarde</a></div></div>
+      <div class="row"><div class="k">Tarde</div><div class="v">Castelsardo<span class="meta">Casco medieval y Castillo de los Doria</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Castello+dei+Doria+Castelsardo"><svg><use href="#pinic"/></svg>Castillo Doria</a></div></div>
+      <div class="row"><div class="k">Alojamiento</div><div class="v">Castelsardo (1 noche)<span class="meta">Dormir en el pueblo medieval, precioso de noche</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=hotel+Castelsardo+centro+storico"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
+      <div class="row"><div class="k">Cena</div><div class="v">Amare · Alla Guardiola<span class="meta">Terraza con vistas sobre el golfo · reservar</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Amare+Alla+Guardiola+Castelsardo"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
     </div>
     <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
-      <li><span class="star">✦</span><span><b>Centro histórico catalán</b>: callejear por la "Barceloneta sarda", torres y bastiones sobre el mar.</span></li>
-      <li><span class="star">✦</span><span><b>Playa Le Bombarde o Lazzaretto</b>: las mejores calas de arena cerca de la ciudad.</span></li>
-      <li><span class="star">✦</span><span><b>Atardecer desde las murallas</b> (Bastioni Marco Polo), con copa de Vermentino local.</span></li>
-      <li><span class="star">✦</span><span>Opcional si hay tiempo y ganas: excursión a la <b>Gruta de Neptuno</b> en Capo Caccia.</span></li>
-    </ul></div></div></div>
+      <li><span class="star">✦</span><span><b>Castillo de los Doria</b> (s. XII) y su <b>Museo della Cestería</b>: las mejores vistas del Golfo de Asinara.</span></li>
+      <li><span class="star">✦</span><span><b>Catedral de Sant’Antonio Abate</b>: campanario con cúpula de cerámica de colores asomada al mar.</span></li>
+      <li><span class="star">✦</span><span><b>Castelsardo de noche</b>: el pueblo medieval iluminado y sin turistas de día, la ventaja de dormir aquí.</span></li>
+      <li><span class="star">✦</span><span>De camino, la <b>Roccia dell’Elefante</b>, curiosa roca con forma de elefante junto a la carretera.</span></li>
+    </ul></div>
+    </div></div>
   </article>
 
-  <!-- D8 -->
   <article class="day">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">05</span><span class="m">Mié Ago</span></div>
       <div class="day-title">
         <span class="route">La Maddalena · día completo</span>
-        <span class="tags"><span class="tag grp">Pareja</span><span class="tag drive">🚗 ~2h30 + ferry</span><span class="tag">⭐ Archipiélago</span></span>
+        <span class="tags"><span class="tag grp">Pareja</span><span class="tag drive">🚗 ~1h15 + ferry</span><span class="tag">⭐ Archipiélago</span></span>
       </div>
       <div class="day-toggle">⌄</div>
     </div>
     <div class="day-body"><div class="day-inner"><div class="rows">
-      <div class="row"><div class="k">Trayecto</div><div class="v">Alghero → Palau (~2h30)<span class="meta">Salir pronto (8:00–8:30) para coger ferry sobre 11:00–11:30</span></div></div>
-      <div class="row"><div class="k">Ferry</div><div class="v">Palau ↔ La Maddalena<span class="meta">~15–20 min de travesía · salidas muy frecuentes (Maddalena Lines, etc.)</span></div></div>
-      <div class="row"><div class="k">El día</div><div class="v">Archipiélago de La Maddalena<span class="meta">La Maddalena y Caprera (Cala Coticcio); o excursión en barco a Spargi y Budelli</span></div></div>
-      <div class="row"><div class="k">Alojamiento</div><div class="v">Palau<span class="meta">La Vecchia Fonte (puerto) o Capo d'Orso Thalasso &amp; SPA (lujo, afueras)</span></div></div>
-      <div class="row"><div class="k">Cena</div><div class="v">Puerto de Palau</div></div>
+      <div class="row"><div class="k">Trayecto</div><div class="v">Castelsardo → Palau (~1h15)<span class="meta">Mucho más corto que antes: ya estáis en el norte</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Maddalena+Lines+Palau+imbarco"><svg><use href="#pinic"/></svg>Embarque Palau</a></div></div>
+      <div class="row"><div class="k">Ferry</div><div class="v">Palau ↔ La Maddalena<span class="meta">~15–20 min de travesía · salidas muy frecuentes</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Maddalena+Lines+Palau"><svg><use href="#pinic"/></svg>Ferry Palau</a></div></div>
+      <div class="row"><div class="k">El día</div><div class="v">Archipiélago de La Maddalena<span class="meta">La Maddalena y Caprera (Cala Coticcio); o excursión en barco a Spargi y Budelli</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=La+Maddalena+centro+Cala+Gavetta"><svg><use href="#pinic"/></svg>La Maddalena</a></div></div>
+      <div class="row"><div class="k">Alojamiento</div><div class="v">Palau<span class="meta">La Vecchia Fonte (puerto) o Capo d&#39;Orso Thalasso &amp; SPA (lujo, afueras)</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=La+Vecchia+Fonte+Hotel+Palau"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
+      <div class="row"><div class="k">Cena</div><div class="v">Puerto de Palau<a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=ristoranti+porto+Palau+Sardegna"><svg><use href="#pinic"/></svg>Restaurantes</a></div></div>
     </div>
-    <div class="note"><strong>Por qué dormir en Palau y no en la isla:</strong> con vuelo a las 11:20 del día siguiente, quedarse en tierra firme evita la prisa del ferry de vuelta por la mañana.</div>
+    <div class="note"><strong>La ventaja de la nueva ruta:</strong> al dormir en Castelsardo, llegáis a Palau en ~1h15 (no 2h30), con La Maddalena por delante desde primera hora y tiempo de sobra para la excursión en barco.</div>
     <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
       <li><span class="star">✦</span><span><b>Cala Coticcio</b> ("Tahití") en Caprera: una de las calas más espectaculares de Cerdeña.</span></li>
       <li><span class="star">✦</span><span><b>Excursión en barco por el archipiélago</b>: Spargi, Santa Maria y la Spiaggia Rosa de Budelli (solo se ve desde el agua).</span></li>
       <li><span class="star">✦</span><span><b>Caprera y la Casa-Museo de Garibaldi</b>, unida a La Maddalena por un puente.</span></li>
       <li><span class="star">✦</span><span>Paseo por el <b>centro de La Maddalena</b> (Cala Gavetta) y, de vuelta, atardecer en <b>Palau</b>.</span></li>
-    </ul></div></div></div>
+    </ul></div>
+    </div></div>
   </article>
 
-  <!-- D9 -->
   <article class="day">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">06</span><span class="m">Jue Ago</span></div>
@@ -530,9 +552,11 @@
       <div class="day-toggle">⌄</div>
     </div>
     <div class="day-body"><div class="day-inner"><div class="rows">
-      <div class="row"><div class="k">Trayecto</div><div class="v">Palau → aeropuerto de Olbia (~50 min)</div></div>
+      <div class="row"><div class="k">Trayecto</div><div class="v">Palau → aeropuerto de Olbia (~50 min)<a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/guG3sc64VAG3AVYx9"><svg><use href="#pinic"/></svg>Aeropuerto Olbia</a></div></div>
       <div class="row"><div class="k">Clave</div><div class="v">Devolver coche y vuelo · 11:20<span class="meta">Salir de Palau sobre las 8:30 para ir holgados</span></div></div>
-    </div></div></div>
+    </div>
+
+    </div></div>
   </article>
 </section>
 
@@ -542,36 +566,47 @@
   <h2>Alojamientos</h2>
   <div class="ref-grid">
     <div class="ref">
-      <h4>🌃 Olbia · noches 29 y 30 jul</h4>
+      <h4>🌃 Olbia · noche 29 jul</h4>
       <ul>
-        <li><span class="name">Grand Hotel President</span><span class="det">Céntrico, junto al puerto, parking seguro · 4,5★</span></li>
-        <li><span class="name">Jazz Hotel</span><span class="det">A 10 min del aeropuerto, piscina, diseño moderno</span></li>
+        <li><span class="name">Casa Amerì Affittacamere</span><span class="det">Via Venezia Giulia 22, 07026 Olbia</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/f4y14ePjkvvnFA2C8"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>🌅 Orosei · noche 30 jul</h4>
+      <ul>
+        <li><span class="name">Su Barchile Hotel Ristorante</span><span class="det">Via F. I. Mannu 5, 08028 Orosei</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/cPtqkVCY1GDM6mSr8"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
       </ul>
     </div>
     <div class="ref">
       <h4>🏝️ Solanas · noches 31 jul y 1 ago</h4>
       <ul>
-        <li><span class="name">Istedda Boutique Hotel</span><span class="det">Base familiar. Relax, piscina, playas cerca · 4,7★ · +39 351 601 4431</span></li>
+        <li><span class="name">Istedda Boutique Hotel</span><span class="det">Base familiar. Relax, piscina, playas cerca · 4,7★ · +39 351 601 4431</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/GrVD2YaTfbr4A6Py5"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
       </ul>
     </div>
     <div class="ref">
-      <h4>🏙️ Cagliari · noche 2 ago</h4>
+      <h4>🎨 Bosa · noche 2 ago</h4>
       <ul>
-        <li><span class="name">A elegir en el barrio histórico</span><span class="det">Zona Castello / Marina, para conocer la ciudad a pie</span></li>
+        <li><span class="name">A elegir en el casco</span><span class="det">Pueblo de casas de colores sobre el río Temo</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=hotel+Bosa+centro+storico"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
       </ul>
     </div>
     <div class="ref">
-      <h4>🧱 Alghero · noches 3 y 4 ago</h4>
+      <h4>🧱 Alghero · noche 3 ago</h4>
       <ul>
-        <li><span class="name">Hotel Catalunya</span><span class="det">Casco histórico, pedir vistas al mar · desayuno panorámico</span></li>
-        <li><span class="name">Hotel Domomea</span><span class="det">Boutique de 21 habitaciones, íntimo · 4,6★</span></li>
+        <li><span class="name">Hotel Catalunya</span><span class="det">Casco histórico, pedir vistas al mar · desayuno panorámico</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hotel+Catalunya+Alghero"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+        <li><span class="name">Hotel Domomea</span><span class="det">Boutique de 21 habitaciones, íntimo · 4,6★</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hotel+Domomea+Alghero"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>🏰 Castelsardo · noche 4 ago</h4>
+      <ul>
+        <li><span class="name">A elegir en el casco medieval</span><span class="det">Dormir en el pueblo, precioso de noche e iluminado</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=hotel+Castelsardo+centro+storico"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
       </ul>
     </div>
     <div class="ref">
       <h4>⛵ Palau · noche 5 ago</h4>
       <ul>
-        <li><span class="name">La Vecchia Fonte Hotel</span><span class="det">En el puerto, junto a restaurantes · +39 0789 709750</span></li>
-        <li><span class="name">Capo d'Orso Thalasso &amp; SPA</span><span class="det">Lujo con spa y marina propia, a las afueras · 4,6★</span></li>
+        <li><span class="name">La Vecchia Fonte Hotel</span><span class="det">En el puerto, junto a restaurantes · +39 0789 709750</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=La+Vecchia+Fonte+Hotel+Palau"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+        <li><span class="name">Capo d'Orso Thalasso &amp; SPA</span><span class="det">Lujo con spa y marina propia, a las afueras · 4,6★</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hotel+Capo+d'Orso+Thalasso+Spa+Palau"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
       </ul>
     </div>
   </div>
@@ -585,30 +620,30 @@
     <div class="ref">
       <h4>🐟 Olbia</h4>
       <ul>
-        <li><span class="name">Mere Ristorante</span><span class="det">Pescado y pasta · +39 329 293 7003</span></li>
-        <li><span class="name">Trattoria La Vecchia Olbia</span><span class="det">Auténtica, familiar · +39 0789 383803 · cierra dom</span></li>
+        <li><span class="name">Mere Ristorante</span><span class="det">Pescado y pasta · +39 329 293 7003</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Mere+Ristorante+Olbia"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+        <li><span class="name">Trattoria La Vecchia Olbia</span><span class="det">Auténtica, familiar · +39 0789 383803 · cierra dom</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Trattoria+La+Vecchia+Olbia"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
       </ul>
     </div>
     <div class="ref">
       <h4>🏰 Castelsardo</h4>
       <ul>
-        <li><span class="name">Amare · Alla Guardiola</span><span class="det">Terraza con vistas, marisco · +39 327 098 9927</span></li>
-        <li><span class="name">Raimondo's Pizzeria</span><span class="det">Mejor pizza de la zona · +39 328 643 9447</span></li>
+        <li><span class="name">Amare · Alla Guardiola</span><span class="det">Terraza con vistas, marisco · +39 327 098 9927</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Amare+Alla+Guardiola+Castelsardo"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+        <li><span class="name">Raimondo's Pizzeria</span><span class="det">Mejor pizza de la zona · +39 328 643 9447</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Raimondo's+Pizzeria+Castelsardo"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
       </ul>
     </div>
     <div class="ref">
       <h4>🦞 Villasimius</h4>
       <ul>
-        <li><span class="name">Ristorante Sa Tankitta</span><span class="det">Marisco, familiar · +39 070 887 7948</span></li>
-        <li><span class="name">Sobat (fine dining)</span><span class="det">Menú degustación · +39 346 165 9986</span></li>
-        <li><span class="name">Balù Lounge &amp; Bistrot</span><span class="det">Terraza elegante · +39 070 792001</span></li>
+        <li><span class="name">Ristorante Sa Tankitta</span><span class="det">Marisco, familiar · +39 070 887 7948</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Ristorante+Sa+Tankitta+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+        <li><span class="name">Sobat (fine dining)</span><span class="det">Menú degustación · +39 346 165 9986</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Sobat+Restaurant+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+        <li><span class="name">Balù Lounge &amp; Bistrot</span><span class="det">Terraza elegante · +39 070 792001</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Balu+Lounge+Bistrot+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
       </ul>
     </div>
     <div class="ref">
       <h4>🌆 Cagliari</h4>
       <ul>
-        <li><span class="name">La Taverna di Castello</span><span class="det">Marisco, barrio histórico · +39 070 311 0056</span></li>
-        <li><span class="name">Stella Marina di Montecristo</span><span class="det">Menú fijo de pescado, institución · +39 347 578 8964</span></li>
+        <li><span class="name">La Taverna di Castello</span><span class="det">Marisco, barrio histórico · +39 070 311 0056</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=La+Taverna+di+Castello+Cagliari"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+        <li><span class="name">Stella Marina di Montecristo</span><span class="det">Menú fijo de pescado, institución · +39 347 578 8964</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Stella+Marina+di+Montecristo+Cagliari"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
       </ul>
     </div>
   </div>
@@ -622,20 +657,20 @@
     <div class="ref">
       <h4>⭐ Más exclusivo</h4>
       <ul>
-        <li><span class="name">M.Y. Koral II — Luxury Private Charter</span><span class="det">Yate con patrón, aperitivo y comida a bordo, snorkel y scooter submarino · 5★ · +39 339 757 6664</span></li>
+        <li><span class="name">M.Y. Koral II — Luxury Private Charter</span><span class="det">Yate con patrón, aperitivo y comida a bordo, snorkel y scooter submarino · 5★ · +39 339 757 6664</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Porto+turistico+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
       </ul>
     </div>
     <div class="ref">
       <h4>🛥️ Familiar y flexible</h4>
       <ul>
-        <li><span class="name">Best Vacation Ever (BVE)</span><span class="det">Excursiones privadas con patrón, gran trato · +39 327 739 9331</span></li>
-        <li><span class="name">Uniq Charter Sardinia</span><span class="det">Lancha privada con patrón, adaptan ruta · +39 332 211 5535</span></li>
+        <li><span class="name">Best Vacation Ever (BVE)</span><span class="det">Excursiones privadas con patrón, gran trato · +39 327 739 9331</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Porto+turistico+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+        <li><span class="name">Uniq Charter Sardinia</span><span class="det">Lancha privada con patrón, adaptan ruta · +39 332 211 5535</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Porto+turistico+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
       </ul>
     </div>
     <div class="ref">
       <h4>🧭 Si lleváis vosotros</h4>
       <ul>
-        <li><span class="name">Pick &amp; Boat</span><span class="det">Alquiler con o sin patrón (alguien con licencia náutica) · +39 351 993 1853</span></li>
+        <li><span class="name">Pick &amp; Boat</span><span class="det">Alquiler con o sin patrón (alguien con licencia náutica) · +39 351 993 1853</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Porto+turistico+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
       </ul>
     </div>
   </div>
