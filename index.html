@@ -20,9 +20,10 @@
   body{font-family:'Outfit',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;font-weight:300;overflow-x:hidden}
   h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:500;line-height:1.15;letter-spacing:-.01em}
 
-  /* ===== top nav ===== */
-  .nav{position:sticky;top:0;z-index:50;background:rgba(251,247,240,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-  .nav-inner{max-width:1100px;margin:0 auto;padding:.7rem 1.1rem;display:flex;align-items:center;gap:.6rem;overflow-x:auto;scrollbar-width:none}
+  /* ===== top nav (fija siempre) ===== */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(251,247,240,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:1100px;margin:0 auto;padding:.7rem 1.4rem;display:flex;align-items:center;gap:.6rem;overflow-x:auto;scrollbar-width:none}
+  .nav-spacer{height:52px}
   .nav-inner::-webkit-scrollbar{display:none}
   .nav-brand{font-family:'Fraunces',serif;font-weight:600;font-size:1.02rem;color:var(--sea-deep);white-space:nowrap;margin-right:.3rem}
   .nav a.pill{font-size:.82rem;color:var(--ink-soft);text-decoration:none;padding:.32rem .7rem;border-radius:999px;white-space:nowrap;transition:.2s;border:1px solid transparent}
@@ -42,7 +43,7 @@
   .hero .dates span{display:inline-flex;align-items:center;gap:.4rem}
   .hero .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block}
 
-  .wrap{max-width:1100px;margin:0 auto;padding:0 1.1rem}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 1.4rem}
   .section{padding:3rem 0 1rem}
   .eyebrow{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terracotta);font-weight:500;font-family:'Outfit',sans-serif}
   .section h2{font-size:clamp(1.7rem,5vw,2.3rem);margin:.3rem 0 1.4rem}
@@ -80,7 +81,7 @@
 
   .day-body{max-height:0;overflow:hidden;transition:max-height .45s ease}
   .day.open .day-body{max-height:1600px}
-  .day-inner{padding:.3rem 1.2rem 1.4rem;border-top:1px solid var(--line)}
+  .day-inner{padding:.3rem 1.4rem 1.5rem;border-top:1px solid var(--line)}
   .rows{display:grid;gap:.1rem;margin-top:.9rem}
   .row{display:grid;grid-template-columns:128px 1fr;gap:.7rem;padding:.62rem 0;border-bottom:1px dashed var(--line);align-items:start}
   .row:last-child{border-bottom:none}
@@ -145,11 +146,20 @@
   footer .heart{color:var(--terracotta)}
 
   @media(max-width:560px){
-    .day-num{flex:0 0 66px}
+    .wrap{padding:0 1.35rem}
+    .day-num{flex:0 0 64px}
     .day-num .d{font-size:1.5rem}
-    .row{grid-template-columns:1fr;gap:.15rem}
+    .day-title{padding:1rem 1rem 1rem .95rem}
+    .day-inner{padding:.3rem 1.15rem 1.4rem}
+    .row{grid-template-columns:1fr;gap:.15rem;padding:.68rem 0}
     .row .k{padding-top:0}
-    .hero{padding:3.2rem 1.1rem 3rem}
+    .hero{padding:3.2rem 1.35rem 3rem}
+    .info-card{padding:1.15rem 1.3rem}
+    .ref{padding:1.15rem 1.3rem}
+    .check-card{padding:1.05rem 1.25rem}
+    .must{padding:.9rem 1.05rem}
+    .note{padding:.75rem 1rem}
+    .map-box{padding:1rem .8rem}
   }
 </style>
 </head>
@@ -165,10 +175,10 @@
     <a class="pill" href="#dias">Días</a>
     <a class="pill" href="#hoteles">Hoteles</a>
     <a class="pill" href="#comer">Comer</a>
-    <a class="pill" href="#barco">Barco</a>
     <a class="pill" href="#maleta">Maleta</a>
   </div>
 </nav>
+<div class="nav-spacer"></div>
 
 <header class="hero">
   <h1>Cerdeña</h1>
@@ -202,7 +212,7 @@
       <p>Norte (Olbia, Castelsardo) → Sur familiar (Istedda) → Costa oeste (Bosa, Alghero) → La Maddalena.</p>
     </div>
   </div>
-  <div class="note"><strong>Reservar con antelación (agosto = temporada alta):</strong> hoteles, barco privado del 1 de agosto, restaurantes destacados y el ferry de La Maddalena.</div>
+  <div class="note"><strong>Reservar con antelación (agosto = temporada alta):</strong> restaurantes destacados, hamacas de Porto Giunco si es posible, y el ferry de La Maddalena.</div>
   <div class="note">🚗 <strong>Coche:</strong> ya alquilado. Recogida y entrega en la <strong>terminal del aeropuerto de Olbia</strong>.</div>
 </section>
 
@@ -282,7 +292,7 @@
       <g transform="translate(322,460)">
         <circle r="11" fill="#c75b39"/>
         <text x="0" y="4" text-anchor="middle" font-size="11" fill="#fff">★</text>
-        <text class="m-label" x="16" y="-6">Villasimius ⛵</text>
+        <text class="m-label" x="16" y="-6">Porto Giunco 🏖</text>
       </g>
       <!-- Bosa (O) - alojamiento · noche 5 -->
       <g transform="translate(85,310)">
@@ -333,7 +343,7 @@
       <span><span class="lg-route"></span> Trayecto del viaje</span>
     </div>
     <div class="map-legend" style="margin-top:.4rem;font-size:.8rem">
-      <span>✈ Aeropuerto &nbsp;·&nbsp; ⛴ Ferry &nbsp;·&nbsp; ⛵ Barco</span>
+      <span>✈ Aeropuerto &nbsp;·&nbsp; ⛴ Ferry &nbsp;·&nbsp; 🏖 Playa</span>
     </div>
   </div>
   <div class="note">El viaje dibuja un círculo completo: Olbia, bajada por la costa este (Orosei) hasta el sur familiar (Istedda), y subida por la costa oeste (Bosa, Alghero, Castelsardo) hasta cerrar en el norte con La Maddalena, antes de volar desde Olbia.</div>
@@ -422,23 +432,23 @@
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">01</span><span class="m">Sáb Ago</span></div>
       <div class="day-title">
-        <span class="route">Barco privado en familia</span>
-        <span class="tags"><span class="tag grp">Pareja + hijos</span><span class="tag drive">🚗 ~15 min al puerto</span><span class="tag">⭐ Día estrella</span></span>
+        <span class="route">Playa en familia · Porto Giunco</span>
+        <span class="tags"><span class="tag grp">Pareja + hijos</span><span class="tag drive">🚗 ~20 min</span><span class="tag">⭐ Día estrella</span></span>
       </div>
       <div class="day-toggle">⌄</div>
     </div>
     <div class="day-body"><div class="day-inner"><div class="rows">
-      <div class="row"><div class="k">Trayecto</div><div class="v">Istedda → puerto de Villasimius (~15 min)</div></div>
-      <div class="row"><div class="k">El día</div><div class="v">Charter privado por la costa sureste<span class="meta">Capo Carbonara, Isola dei Cavoli, Punta Molentis · baño y snorkel</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Porto+turistico+Villasimius"><svg><use href="#pinic"/></svg>Puerto Villasimius</a></div></div>
-      <div class="row"><div class="k">Comida</div><div class="v">A bordo<span class="meta">Incluida en el charter (aperitivo/almuerzo)</span></div></div>
-      <div class="row"><div class="k">Cena</div><div class="v">Sobat (fine dining) o Balù Lounge<span class="meta">Algo especial para celebrar el día en familia</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Sobat+Restaurant+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
+      <div class="row"><div class="k">Trayecto</div><div class="v">Istedda → Porto Giunco (Villasimius, ~20 min)<span class="meta">Llegar pronto (antes de las 10:00) para aparcar y coger buen sitio</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Spiaggia+di+Porto+Giunco+Villasimius"><svg><use href="#pinic"/></svg>Porto Giunco</a></div></div>
+      <div class="row"><div class="k">El día</div><div class="v">Día completo de playa con hamacas<span class="meta">Arena blanca finísima y aguas turquesas al pie de la torre aragonesa · alquilar hamacas y sombrilla en los lidos de la playa</span><a class="pin" target="_blank" rel="noopener" href="https://www.sardegnaturismo.it/es/explora/porto-giunco"><svg><use href="#pinic"/></svg>Guía oficial</a></div></div>
+      <div class="row"><div class="k">Comida</div><div class="v">Chiringuito / lido de la playa<span class="meta">Comida informal sin moverse de la arena</span></div></div>
+      <div class="row"><div class="k">Cena</div><div class="v">Sobat (fine dining) o Balù Lounge<span class="meta">Algo especial para celebrar el día en familia</span><span class="pending">⏳ Pendiente reservar</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Sobat+Restaurant+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
     </div>
-    <div class="note">Ver sección <a href="#barco" style="color:var(--sea-deep)">Barco privado</a> para las empresas recomendadas y teléfonos.</div>
+    <div class="note"><strong>Consejo de agosto:</strong> Porto Giunco es de las playas más deseadas del sur; id temprano y reservad las hamacas con antelación si el lido lo permite. El aparcamiento es de pago y se llena pronto.</div>
     <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
-      <li><span class="star">✦</span><span><b>Isola dei Cavoli</b> y el faro: aguas turquesas y fondo ideal para snorkel en el área marina de Capo Carbonara.</span></li>
-      <li><span class="star">✦</span><span><b>Punta Molentis</b>: una de las calas más fotogénicas del sureste, baño desde el barco.</span></li>
-      <li><span class="star">✦</span><span><b>Aperitivo a bordo</b> fondeados en una cala: el momento del día en familia.</span></li>
-      <li><span class="star">✦</span><span>Llevar <b>gafas y tubo</b>; el patrón conoce los mejores puntos según el viento del día.</span></li>
+      <li><span class="star">✦</span><span><b>La torre aragonesa de Porto Giunco</b>: subir a media tarde por las vistas de la playa y el estanque desde lo alto.</span></li>
+      <li><span class="star">✦</span><span><b>El estanque de Notteri</b>, justo detrás de la playa: en verano suele haber <b>flamencos rosas</b>.</span></li>
+      <li><span class="star">✦</span><span><b>Baño en la "playa de los dos mares"</b>: la franja de arena separa el mar del estanque, aguas someras y turquesas.</span></li>
+      <li><span class="star">✦</span><span><b>Snorkel</b> hacia el extremo rocoso de Capo Carbonara, área marina protegida.</span></li>
     </ul></div>
     </div></div>
   </article>
@@ -649,34 +659,6 @@
   </div>
 </section>
 
-<!-- ===== BARCO ===== -->
-<section class="section wrap" id="barco">
-  <p class="eyebrow">1 de agosto</p>
-  <h2>Barco privado · Villasimius</h2>
-  <div class="ref-grid">
-    <div class="ref">
-      <h4>⭐ Más exclusivo</h4>
-      <ul>
-        <li><span class="name">M.Y. Koral II — Luxury Private Charter</span><span class="pending">⏳ Pendiente reservar</span><span class="det">Yate con patrón, aperitivo y comida a bordo, snorkel y scooter submarino · 5★ · +39 339 757 6664</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Porto+turistico+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
-      </ul>
-    </div>
-    <div class="ref">
-      <h4>🛥️ Familiar y flexible</h4>
-      <ul>
-        <li><span class="name">Best Vacation Ever (BVE)</span><span class="pending">⏳ Pendiente reservar</span><span class="det">Excursiones privadas con patrón, gran trato · +39 327 739 9331</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Porto+turistico+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
-        <li><span class="name">Uniq Charter Sardinia</span><span class="pending">⏳ Pendiente reservar</span><span class="det">Lancha privada con patrón, adaptan ruta · +39 332 211 5535</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Porto+turistico+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
-      </ul>
-    </div>
-    <div class="ref">
-      <h4>🧭 Si lleváis vosotros</h4>
-      <ul>
-        <li><span class="name">Pick &amp; Boat</span><span class="pending">⏳ Pendiente reservar</span><span class="det">Alquiler con o sin patrón (alguien con licencia náutica) · +39 351 993 1853</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Porto+turistico+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="note">Todos salen del puerto de Villasimius (~15 min del Istedda). <strong>Reservar ya:</strong> la primera semana de agosto se llena.</div>
-</section>
-
 <!-- ===== MALETA ===== -->
 <section class="section wrap" id="maleta">
   <p class="eyebrow">Antes de salir</p>
@@ -685,7 +667,7 @@
     <div class="check-card">
       <h4>Reservas a confirmar</h4>
       <label><input type="checkbox">Coche de alquiler (todo el viaje)</label>
-      <label><input type="checkbox">Barco privado · 1 de agosto</label>
+      <label><input type="checkbox">Hamacas en Porto Giunco · 1 de agosto (si el lido admite reserva)</label>
       <label><input type="checkbox">Hoteles (Olbia, Istedda, Cagliari, Alghero, Palau)</label>
       <label><input type="checkbox">Restaurantes destacados</label>
       <label><input type="checkbox">Ferry Palau ↔ La Maddalena</label>
