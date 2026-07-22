@@ -28,6 +28,13 @@
   .nav-brand{font-family:'Fraunces',serif;font-weight:600;font-size:1.02rem;color:var(--sea-deep);white-space:nowrap;margin-right:.3rem}
   .nav a.pill{font-size:.82rem;color:var(--ink-soft);text-decoration:none;padding:.32rem .7rem;border-radius:999px;white-space:nowrap;transition:.2s;border:1px solid transparent}
   .nav a.pill:hover{color:var(--sea-deep);background:var(--sand)}
+  .nav a.pill.hoy{background:var(--gold);color:#fff;font-weight:500}
+  .nav a.pill.hoy:hover{background:#c08d2e;color:#fff}
+
+  .hero-count{margin-top:1.1rem;font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;color:var(--gold);min-height:1.4em}
+
+  .day.today{border-color:var(--gold);box-shadow:0 0 0 2px rgba(217,164,65,.35),var(--shadow)}
+  .day.today .day-num::after{content:"HOY";display:block;font-size:.58rem;letter-spacing:.14em;font-weight:600;margin-top:.3rem;background:var(--gold);border-radius:4px;padding:.1rem .3rem}
 
   /* ===== hero ===== */
   .hero{position:relative;padding:4.2rem 1.3rem 3.4rem;text-align:center;overflow:hidden;
@@ -170,11 +177,14 @@
 <nav class="nav">
   <div class="nav-inner">
     <span class="nav-brand">🌊 Cerdeña '26</span>
+    <a class="pill hoy" href="#dias" id="btn-hoy" style="display:none">📍 Hoy</a>
     <a class="pill" href="#info">Info</a>
     <a class="pill" href="#mapa">Mapa</a>
     <a class="pill" href="#dias">Días</a>
     <a class="pill" href="#hoteles">Hoteles</a>
     <a class="pill" href="#comer">Comer</a>
+    <a class="pill" href="#sabores">Sabores</a>
+    <a class="pill" href="#italiano">Italiano</a>
     <a class="pill" href="#maleta">Maleta</a>
   </div>
 </nav>
@@ -187,6 +197,7 @@
     <span><span class="dot"></span>29 jul → 6 ago 2026</span>
     <span><span class="dot"></span>Olbia · Sur · Costa Oeste · La Maddalena</span>
   </div>
+  <div class="hero-count" id="hero-count"></div>
   <svg class="hero-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" height="48"><path fill="#fbf7f0" d="M0,40 C240,80 480,0 720,30 C960,60 1200,10 1440,40 L1440,80 L0,80 Z"></path></svg>
 </header>
 
@@ -359,7 +370,7 @@
     <span>👆 Toca cada día para abrirlo</span>
   </div>
 
-  <article class="day open">
+  <article data-date="2026-07-29" class="day open">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">29</span><span class="m">Mié Jul</span></div>
       <div class="day-title">
@@ -381,7 +392,7 @@
     </div></div>
   </article>
 
-  <article class="day">
+  <article data-date="2026-07-30" class="day">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">30</span><span class="m">Jue Jul</span></div>
       <div class="day-title">
@@ -406,7 +417,7 @@
     </div></div>
   </article>
 
-  <article class="day fam">
+  <article data-date="2026-07-31" class="day fam">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">31</span><span class="m">Vie Jul</span></div>
       <div class="day-title">
@@ -428,7 +439,7 @@
     </div></div>
   </article>
 
-  <article class="day fam">
+  <article data-date="2026-08-01" class="day fam">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">01</span><span class="m">Sáb Ago</span></div>
       <div class="day-title">
@@ -453,7 +464,7 @@
     </div></div>
   </article>
 
-  <article class="day fam">
+  <article data-date="2026-08-02" class="day fam">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">02</span><span class="m">Dom Ago</span></div>
       <div class="day-title">
@@ -478,7 +489,7 @@
     </div></div>
   </article>
 
-  <article class="day">
+  <article data-date="2026-08-03" class="day">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">03</span><span class="m">Lun Ago</span></div>
       <div class="day-title">
@@ -503,7 +514,7 @@
     </div></div>
   </article>
 
-  <article class="day">
+  <article data-date="2026-08-04" class="day">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">04</span><span class="m">Mar Ago</span></div>
       <div class="day-title">
@@ -528,7 +539,7 @@
     </div></div>
   </article>
 
-  <article class="day">
+  <article data-date="2026-08-05" class="day">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">05</span><span class="m">Mié Ago</span></div>
       <div class="day-title">
@@ -554,7 +565,7 @@
     </div></div>
   </article>
 
-  <article class="day">
+  <article data-date="2026-08-06" class="day">
     <div class="day-head" onclick="tog(this)">
       <div class="day-num"><span class="d">06</span><span class="m">Jue Ago</span></div>
       <div class="day-title">
@@ -659,6 +670,93 @@
   </div>
 </section>
 
+<!-- ===== SABORES ===== -->
+<section class="section wrap" id="sabores">
+  <p class="eyebrow">Para reconocerlos en la carta</p>
+  <h2>Gastronomía sarda</h2>
+  <div class="ref-grid">
+    <div class="ref">
+      <h4>🍝 Primeros y pastas</h4>
+      <ul>
+        <li><span class="name">Culurgiones</span><span class="det">Raviolis sardos rellenos de patata, pecorino y menta. Los de Orosei y el interior son famosos</span></li>
+        <li><span class="name">Fregola con arselle</span><span class="det">Pasta en bolitas tostadas con almejas, típica de Cagliari y el sur</span></li>
+        <li><span class="name">Malloreddus alla campidanese</span><span class="det">Ñoquis sardos con salsa de salchicha, tomate y azafrán</span></li>
+        <li><span class="name">Spaghetti ai ricci / bottarga</span><span class="det">Con erizo de mar o huevas curadas de mújol, sabor a mar puro</span></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>🦞 Del mar</h4>
+      <ul>
+        <li><span class="name">Aragosta alla catalana</span><span class="det">Langosta con tomate y cebolla, el plato emblema de Alghero</span></li>
+        <li><span class="name">Pesce alla vernaccia</span><span class="det">Pescado del día al vino vernaccia, en la costa oeste</span></li>
+        <li><span class="name">Polpo / calamari alla griglia</span><span class="det">Pulpo o calamar a la brasa, valor seguro en cualquier puerto</span></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>🍖 De la tierra</h4>
+      <ul>
+        <li><span class="name">Porceddu</span><span class="det">Cochinillo asado lentamente, el rey de la cocina sarda del interior</span></li>
+        <li><span class="name">Pane carasau</span><span class="det">Pan plano crujiente ("papel de música"); con aceite y sal es pane guttiau</span></li>
+        <li><span class="name">Pecorino sardo</span><span class="det">Queso de oveja en todas sus curaciones, pedid tabla con miel local</span></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>🍰 Dulces y para brindar</h4>
+      <ul>
+        <li><span class="name">Seadas</span><span class="det">Empanadilla frita de queso con miel caliente por encima, el postre sardo</span></li>
+        <li><span class="name">Vermentino di Gallura</span><span class="det">Blanco fresco DOCG del norte, perfecto con pescado y marisco</span></li>
+        <li><span class="name">Cannonau</span><span class="det">El tinto sardo por excelencia, para el porceddu y los quesos</span></li>
+        <li><span class="name">Mirto</span><span class="det">Licor de arrayán como digestivo; en muchos sitios lo invitan al final</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ITALIANO ===== -->
+<section class="section wrap" id="italiano">
+  <p class="eyebrow">Lo justo para defenderse</p>
+  <h2>Frases útiles en italiano</h2>
+  <div class="ref-grid">
+    <div class="ref">
+      <h4>👋 Cortesía</h4>
+      <ul>
+        <li><span class="name">Buongiorno / Buonasera</span><span class="det">Buenos días / Buenas tardes-noches</span></li>
+        <li><span class="name">Per favore · Grazie mille</span><span class="det">Por favor · Muchas gracias</span></li>
+        <li><span class="name">Scusi</span><span class="det">Disculpe (para llamar la atención o pedir paso)</span></li>
+        <li><span class="name">Parla spagnolo / inglese?</span><span class="det">¿Habla español / inglés?</span></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>🍽️ En el restaurante</h4>
+      <ul>
+        <li><span class="name">Un tavolo per due / quattro, per favore</span><span class="det">Una mesa para dos / cuatro, por favor</span></li>
+        <li><span class="name">Abbiamo una prenotazione a nome…</span><span class="det">Tenemos una reserva a nombre de…</span></li>
+        <li><span class="name">Cosa ci consiglia?</span><span class="det">¿Qué nos recomienda? (funciona de maravilla)</span></li>
+        <li><span class="name">Il conto, per favore</span><span class="det">La cuenta, por favor</span></li>
+        <li><span class="name">Era tutto buonissimo!</span><span class="det">¡Estaba todo buenísimo!</span></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>🏖️ Playa y práctico</h4>
+      <ul>
+        <li><span class="name">Due lettini e un ombrellone, per favore</span><span class="det">Dos hamacas y una sombrilla, por favor</span></li>
+        <li><span class="name">Quanto costa? · Quanto ci vuole?</span><span class="det">¿Cuánto cuesta? · ¿Cuánto se tarda?</span></li>
+        <li><span class="name">Dov'è il parcheggio?</span><span class="det">¿Dónde está el aparcamiento?</span></li>
+        <li><span class="name">A che ora parte il traghetto?</span><span class="det">¿A qué hora sale el ferry? (para Palau–La Maddalena)</span></li>
+      </ul>
+    </div>
+    <div class="ref">
+      <h4>🆘 Por si acaso</h4>
+      <ul>
+        <li><span class="name">Aiuto! · Chiamate un medico</span><span class="det">¡Ayuda! · Llamen a un médico</span></li>
+        <li><span class="name">Mi sono perso/a</span><span class="det">Me he perdido</span></li>
+        <li><span class="name">112</span><span class="det">Número único de emergencias en Italia</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="note">Truco: el italiano y el español se entienden mucho. Hablad despacio, con una sonrisa y un "per favore", y os ganaréis a cualquiera.</div>
+</section>
+
 <!-- ===== MALETA ===== -->
 <section class="section wrap" id="maleta">
   <p class="eyebrow">Antes de salir</p>
@@ -698,7 +796,49 @@
 
 <script>
   function tog(el){ el.closest('.day').classList.toggle('open'); }
-  // Smooth-close others on small screens is optional; keep simple & independent.
+
+  // ===== Modo "Hoy" =====
+  (function(){
+    var days = document.querySelectorAll('.day[data-date]');
+    var today = new Date();
+    var iso = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
+    var trip = ['2026-07-29','2026-08-06'];
+    var todayCard = document.querySelector('.day[data-date="' + iso + '"]');
+    var btn = document.getElementById('btn-hoy');
+    var hero = document.getElementById('hero-count');
+
+    // contador del hero
+    if (hero){
+      var start = new Date(2026,6,29), end = new Date(2026,7,6);
+      var d0 = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      if (d0 < start){
+        var diff = Math.round((start - d0)/86400000);
+        hero.textContent = diff === 1 ? '¡Mañana empieza el viaje!' : 'Faltan ' + diff + ' días';
+      } else if (d0 <= end){
+        var dayN = Math.round((d0 - start)/86400000) + 1;
+        hero.textContent = 'Día ' + dayN + ' de 9 · ¡Estáis en Cerdeña!';
+      } else {
+        hero.textContent = 'Qué gran viaje fue · 29 jul – 6 ago 2026';
+      }
+    }
+
+    if (todayCard){
+      // abrir el día de hoy y marcarlo
+      todayCard.classList.add('open','today');
+      // cerrar el primero si no es el de hoy
+      days.forEach(function(d){ if(d !== todayCard && d.classList.contains('open')) d.classList.remove('open'); });
+      if (btn){
+        btn.style.display = 'inline-flex';
+        btn.addEventListener('click', function(e){
+          e.preventDefault();
+          todayCard.classList.add('open');
+          todayCard.scrollIntoView({behavior:'smooth', block:'start'});
+        });
+      }
+    } else if (btn){
+      btn.style.display = 'none';
+    }
+  })();
 </script>
 </body>
 </html>
