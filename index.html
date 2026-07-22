@@ -118,6 +118,14 @@
   .pin.sea{color:var(--sea-deep);background:rgba(29,110,110,.10);border-color:rgba(29,110,110,.28)}
   .pin.sea:hover{background:rgba(29,110,110,.18);border-color:rgba(29,110,110,.5)}
   .ref li .pin{margin-top:.25rem;align-self:flex-start}
+  .ref li .btns{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.35rem}
+  .ref li .btns .pin{margin:0;align-self:auto}
+
+  /* datos de reserva */
+  .bk{margin-top:.8rem;border-top:1px dashed var(--line);padding-top:.7rem;display:grid;gap:.42rem}
+  .bk-row{display:grid;grid-template-columns:112px 1fr;gap:.6rem;font-size:.93rem;align-items:baseline}
+  .bk-k{font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;color:var(--terracotta);font-weight:500}
+  .bk-code{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:600;letter-spacing:.06em;background:var(--sand);padding:.1rem .5rem;border-radius:6px;display:inline-block;user-select:all}
   .pending{display:inline-block;font-size:.8rem;font-weight:500;color:#9a6a00;background:rgba(217,164,65,.16);border:1px solid rgba(217,164,65,.45);padding:.18rem .55rem;border-radius:999px;margin-left:.4rem;vertical-align:middle}
   .ref li .pending{margin-left:0;margin-top:.2rem;align-self:flex-start}
 
@@ -190,7 +198,7 @@
     <a class="pill" href="#info">Info</a>
     <a class="pill" href="#mapa">Mapa</a>
     <a class="pill" href="#dias">Días</a>
-    <a class="pill" href="#hoteles">Hoteles</a>
+    <a class="pill" href="#hoteles">Reservas</a>
     <a class="pill" href="#comer">Comer</a>
     <a class="pill" href="#sabores">Sabores</a>
     <a class="pill" href="#italiano">Italiano</a>
@@ -605,52 +613,130 @@
 
 <!-- ===== HOTELES ===== -->
 <section class="section wrap" id="hoteles">
-  <p class="eyebrow">Dónde dormir</p>
-  <h2>Alojamientos</h2>
+  <p class="eyebrow">Todo confirmado · con datos de reserva</p>
+  <h2>Alojamientos y reservas</h2>
   <div class="ref-grid">
     <div class="ref">
       <h4>🌃 Olbia · noche 29 jul</h4>
       <ul>
-        <li><span class="name">Casa Amerì Affittacamere</span><span class="det">Via Venezia Giulia 22, 07026 Olbia</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/f4y14ePjkvvnFA2C8"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+        <li><span class="name">Casa Amerì Affittacamere</span><span class="det">Via Venezia Giulia 22, 07026 Olbia</span>
+          <span class="btns"><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/f4y14ePjkvvnFA2C8"><svg><use href="#pinic"/></svg>Cómo llegar</a><a class="pin" target="_blank" rel="noopener" href="https://www.booking.com/hotel/it/casa-ameri.es.html"><svg><use href="#pinic"/></svg>Ver en Booking</a></span>
+        </li>
       </ul>
+      <div class="bk">
+        <div class="bk-row"><span class="bk-k">Entrada</span><span>Mié 29 jul · 15:00–17:00</span></div>
+        <div class="bk-row"><span class="bk-k">Salida</span><span>Jue 30 jul · 09:30–10:00 (concretar hora con el anfitrión)</span></div>
+        <div class="bk-row"><span class="bk-k">Confirmación</span><span class="bk-code">5540034815</span></div>
+        <div class="bk-row"><span class="bk-k">PIN</span><span class="bk-code">2121</span></div>
+        <div class="bk-row"><span class="bk-k">Detalle</span><span>2 adultos · 1 noche</span></div>
+      </div>
     </div>
     <div class="ref">
       <h4>🌅 Orosei · noche 30 jul</h4>
       <ul>
-        <li><span class="name">Su Barchile Hotel Ristorante</span><span class="det">Via F. I. Mannu 5, 08028 Orosei</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/cPtqkVCY1GDM6mSr8"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+        <li><span class="name">Hotel Su Barchile</span><span class="det">Via Mannu 5, 08028 Orosei</span>
+          <span class="btns"><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/cPtqkVCY1GDM6mSr8"><svg><use href="#pinic"/></svg>Cómo llegar</a><a class="pin" target="_blank" rel="noopener" href="https://www.booking.com/hotel/it/su-barchile.es.html"><svg><use href="#pinic"/></svg>Ver en Booking</a></span>
+        </li>
       </ul>
+      <div class="bk">
+        <div class="bk-row"><span class="bk-k">Entrada</span><span>Jue 30 jul · 16:00–19:00</span></div>
+        <div class="bk-row"><span class="bk-k">Salida</span><span>Vie 31 jul · 08:00–11:00</span></div>
+        <div class="bk-row"><span class="bk-k">Confirmación</span><span class="bk-code">6197191963</span></div>
+        <div class="bk-row"><span class="bk-k">PIN</span><span class="bk-code">4132</span></div>
+        <div class="bk-row"><span class="bk-k">Detalle</span><span>2 adultos · 1 noche · 1 habitación</span></div>
+      </div>
     </div>
     <div class="ref">
       <h4>🏝️ Solanas · noches 31 jul y 1 ago</h4>
       <ul>
-        <li><span class="name">Istedda Boutique Hotel</span><span class="det">Base familiar. Relax, piscina, playas cerca · 4,7★ · +39 351 601 4431</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/GrVD2YaTfbr4A6Py5"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+        <li><span class="name">Istedda Boutique Hotel</span><span class="det">Strada Provinciale 20/52A, 09048 Solanas</span>
+          <span class="btns"><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/GrVD2YaTfbr4A6Py5"><svg><use href="#pinic"/></svg>Cómo llegar</a><a class="pin" target="_blank" rel="noopener" href="https://www.booking.com/hotel/it/istedda-suite-amp-rooms.es.html"><svg><use href="#pinic"/></svg>Ver en Booking</a></span>
+        </li>
       </ul>
+      <div class="bk">
+        <div class="bk-row"><span class="bk-k">Entrada</span><span>Vie 31 jul · 15:00–20:00</span></div>
+        <div class="bk-row"><span class="bk-k">Salida</span><span>Dom 2 ago · 08:30–10:00</span></div>
+        <div class="bk-row"><span class="bk-k">Confirmación</span><span class="bk-code">5366636404</span></div>
+        <div class="bk-row"><span class="bk-k">PIN</span><span class="bk-code">6696</span></div>
+        <div class="bk-row"><span class="bk-k">Detalle</span><span>4 adultos · 2 noches · 2 habitaciones</span></div>
+      </div>
     </div>
     <div class="ref">
       <h4>🎨 Bosa · noche 2 ago</h4>
       <ul>
-        <li><span class="name">Fiorelli Rooms</span><span class="det">Via Palestro 14, 08013 Bosa</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/Rx8EFBa6bwhd722Q6"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+        <li><span class="name">Fiorelli Rooms</span><span class="det">Via Palestro 14, 08013 Bosa</span>
+          <span class="btns"><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/Rx8EFBa6bwhd722Q6"><svg><use href="#pinic"/></svg>Cómo llegar</a><a class="pin" target="_blank" rel="noopener" href="https://www.booking.com/hotel/it/fiorelli-rooms.es.html"><svg><use href="#pinic"/></svg>Ver en Booking</a></span>
+        </li>
       </ul>
+      <div class="bk">
+        <div class="bk-row"><span class="bk-k">Entrada</span><span>Dom 2 ago · 16:00–20:00</span></div>
+        <div class="bk-row"><span class="bk-k">Salida</span><span>Lun 3 ago · 08:00–10:30 (concretar hora con el anfitrión)</span></div>
+        <div class="bk-row"><span class="bk-k">Confirmación</span><span class="bk-code">6813696261</span></div>
+        <div class="bk-row"><span class="bk-k">PIN</span><span class="bk-code">0861</span></div>
+        <div class="bk-row"><span class="bk-k">Detalle</span><span>2 adultos · 1 noche</span></div>
+      </div>
     </div>
     <div class="ref">
       <h4>🧱 Alghero · noche 3 ago</h4>
       <ul>
-        <li><span class="name">Sophora Guest House</span><span class="det">Via La Marmora 86, 07041 Alghero</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/ssqicnqJQisubjc46"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+        <li><span class="name">Sophora Guest House</span><span class="det">Via La Marmora 86, 07041 Alghero</span>
+          <span class="btns"><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/ssqicnqJQisubjc46"><svg><use href="#pinic"/></svg>Cómo llegar</a><a class="pin" target="_blank" rel="noopener" href="https://www.booking.com/hotel/it/sophora-guest-house-alghero.es.html"><svg><use href="#pinic"/></svg>Ver en Booking</a></span>
+        </li>
       </ul>
+      <div class="bk">
+        <div class="bk-row"><span class="bk-k">Entrada</span><span>Lun 3 ago · desde las 15:00</span></div>
+        <div class="bk-row"><span class="bk-k">Salida</span><span>Mar 4 ago · 08:00–10:00</span></div>
+        <div class="bk-row"><span class="bk-k">Confirmación</span><span class="bk-code">5292743956</span></div>
+        <div class="bk-row"><span class="bk-k">PIN</span><span class="bk-code">7623</span></div>
+        <div class="bk-row"><span class="bk-k">Detalle</span><span>Habitación Doble Deluxe con vistas al mar · 2 adultos</span></div>
+      </div>
     </div>
     <div class="ref">
       <h4>🏰 Castelsardo · noche 4 ago</h4>
       <ul>
-        <li><span class="name">Radici di Luna Exclusive Design</span><span class="det">Via Puglia 3, 07031 Castelsardo</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/abCK8UWGc3Hqanay6"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+        <li><span class="name">Radici di Luna Exclusive Design</span><span class="det">Via Puglia 3, 07031 Castelsardo</span>
+          <span class="btns"><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/abCK8UWGc3Hqanay6"><svg><use href="#pinic"/></svg>Cómo llegar</a><a class="pin" target="_blank" rel="noopener" href="https://www.booking.com/hotel/it/radici-di-luna.es.html"><svg><use href="#pinic"/></svg>Ver en Booking</a></span>
+        </li>
       </ul>
+      <div class="bk">
+        <div class="bk-row"><span class="bk-k">Entrada</span><span>Mar 4 ago · 16:00–19:30</span></div>
+        <div class="bk-row"><span class="bk-k">Salida</span><span>Mié 5 ago · 08:30–10:00</span></div>
+        <div class="bk-row"><span class="bk-k">Confirmación</span><span class="bk-code">5277453533</span></div>
+        <div class="bk-row"><span class="bk-k">PIN</span><span class="bk-code">8249</span></div>
+        <div class="bk-row"><span class="bk-k">Detalle</span><span>Habitación Deluxe con cama extragrande · 2 adultos</span></div>
+      </div>
     </div>
     <div class="ref">
       <h4>⛵ Palau · noche 5 ago</h4>
       <ul>
-        <li><span class="name">Ammentos</span><span class="det">Via Dune di Porto Pollo 8, 07020 Palau</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/gQzkCNx6PzsVdhWe7"><svg><use href="#pinic"/></svg>Cómo llegar</a></li>
+        <li><span class="name">Ammentos</span><span class="det">Via Dune di Porto Pollo 8, 07020 Palau</span>
+          <span class="btns"><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/gQzkCNx6PzsVdhWe7"><svg><use href="#pinic"/></svg>Cómo llegar</a><a class="pin" target="_blank" rel="noopener" href="https://www.booking.com/hotel/it/ammentos-palau.es.html"><svg><use href="#pinic"/></svg>Ver en Booking</a></span>
+        </li>
       </ul>
+      <div class="bk">
+        <div class="bk-row"><span class="bk-k">Entrada</span><span>Mié 5 ago · 15:00–20:00</span></div>
+        <div class="bk-row"><span class="bk-k">Salida</span><span>Jue 6 ago · 08:00–10:00 (concretar hora con el anfitrión)</span></div>
+        <div class="bk-row"><span class="bk-k">Confirmación</span><span class="bk-code">5740950379</span></div>
+        <div class="bk-row"><span class="bk-k">PIN</span><span class="bk-code">3658</span></div>
+        <div class="bk-row"><span class="bk-k">Detalle</span><span>2 adultos · 1 noche</span></div>
+      </div>
+    </div>
+    <div class="ref">
+      <h4>🚗 Coche de alquiler · todo el viaje</h4>
+      <ul>
+        <li><span class="name">Keddy</span><span class="det">Recogida y entrega en la terminal del aeropuerto de Olbia</span>
+          <span class="btns"><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/guG3sc64VAG3AVYx9"><svg><use href="#pinic"/></svg>Aeropuerto Olbia</a></span>
+        </li>
+      </ul>
+      <div class="bk">
+        <div class="bk-row"><span class="bk-k">Recogida</span><span>Mié 29 jul · llegada 19:30</span></div>
+        <div class="bk-row"><span class="bk-k">Entrega</span><span>Jue 6 ago · antes del vuelo 11:20</span></div>
+        <div class="bk-row"><span class="bk-k">Reserva</span><span class="bk-code">D014208723</span></div>
+        <div class="bk-row"><span class="bk-k">Confirmación</span><span class="bk-code">1203295958</span></div>
+      </div>
     </div>
   </div>
+  <div class="note"><strong>Consejo:</strong> los horarios de salida son tempranos en varios alojamientos (Bosa, Alghero, Palau: desde las 08:00). En los que piden <strong>concretar hora con el anfitrión</strong>, escribidles por Booking un día antes.</div>
 </section>
 
 <!-- ===== COMER ===== -->
@@ -786,7 +872,7 @@
       <h4>Reservas a confirmar</h4>
       <label><input type="checkbox">Coche de alquiler (todo el viaje)</label>
       <label><input type="checkbox">Hamacas en Porto Giunco · 1 de agosto (si el lido admite reserva)</label>
-      <label><input type="checkbox">Hoteles (Olbia, Istedda, Cagliari, Alghero, Palau)</label>
+      <label><input type="checkbox" checked>Hoteles · los 7 confirmados ✓</label>
       <label><input type="checkbox">Restaurantes destacados</label>
       <label><input type="checkbox">Ferry Palau ↔ La Maddalena</label>
     </div>
