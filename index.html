@@ -200,6 +200,7 @@
   .modal-close{position:absolute;top:.9rem;right:1rem;border:none;background:var(--sand);color:var(--ink);
     width:34px;height:34px;border-radius:50%;font-size:1.2rem;line-height:1;cursor:pointer;transition:.18s}
   .modal-close:hover{background:var(--sand-deep)}
+  .modal-alert{background:#fdf0d5;border:1px solid rgba(217,164,65,.5);color:#8a5a00;border-radius:12px;padding:.7rem .9rem;font-size:.98rem;margin-bottom:.4rem}
   .modal-box h4{font-size:1.05rem;color:var(--terracotta);margin:1.1rem 0 .4rem}
   .modal-box h4:first-of-type{margin-top:.4rem}
   .modal-box p{font-size:1rem;margin-bottom:.5rem}
@@ -534,7 +535,7 @@
     <div class="day-body"><div class="day-inner"><div class="rows">
       <div class="row"><div class="k">⏰ Clave</div><div class="v"><b>Estar en la playa antes de las 9:30</b><span class="meta">Salir del Istedda sobre las 8:50–9:00 · hamacas ya reservadas</span></div></div>
       <div class="row"><div class="k">Trayecto</div><div class="v">Istedda → Porto Giunco (Villasimius, ~20 min)<span class="meta">Aparcamiento de pago junto a la playa, se llena pronto</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Spiaggia+di+Porto+Giunco+Villasimius"><svg><use href="#pinic"/></svg>Porto Giunco</a></div></div>
-      <div class="row"><div class="k">El día</div><div class="v">Día completo de playa con hamacas <span class="ok">✓ Reservadas</span><span class="meta">Arena blanca finísima y aguas turquesas al pie de la torre aragonesa</span><a class="pin" target="_blank" rel="noopener" href="https://www.sardegnaturismo.it/es/explora/porto-giunco"><svg><use href="#pinic"/></svg>Guía oficial</a></div></div>
+      <div class="row"><div class="k">El día</div><div class="v">Día completo de playa con hamacas <span class="ok">✓ Reservadas</span><span class="meta">Arena blanca finísima y aguas turquesas al pie de la torre aragonesa</span><span class="btns"><a class="pin" target="_blank" rel="noopener" href="https://www.sardegnaturismo.it/es/explora/porto-giunco"><svg><use href="#pinic"/></svg>Guía oficial</a><button class="pin tips" type="button" onclick="openModal('m-giunco')"><svg><use href="#pinic"/></svg>Recomendaciones</button></span></div></div>
       <div class="row"><div class="k">Comida</div><div class="v">Chiringuito / lido de la playa<span class="meta">Comida informal sin moverse de la arena</span></div></div>
       <div class="row"><div class="k">Cena</div><div class="v">Sobat (fine dining) o Balù Lounge<span class="meta">Algo especial para celebrar el día en familia</span><span class="pending">⏳ Pendiente reservar</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Sobat+Restaurant+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
     </div>
@@ -610,13 +611,13 @@
     </div>
     <div class="day-body"><div class="day-inner"><div class="rows">
       <div class="row"><div class="k">Trayecto</div><div class="v">Alghero → (Stintino) → Castelsardo<span class="meta">Directo ~1h · vía La Pelosa: 1h + 1h10, perfectamente asumible</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Castelsardo+centro+storico"><svg><use href="#pinic"/></svg>Castelsardo</a></div></div>
-      <div class="row"><div class="k">Mañana</div><div class="v">La Pelosa (Stintino) · la joya del noroeste<span class="meta">A ~1h de Alghero y ~1h10 de Castelsardo: cae de camino · ⚠️ reserva obligatoria (3,50 €/persona) y <b>esterilla obligatoria</b> bajo la toalla</span><span class="btns"><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Spiaggia+La+Pelosa+Stintino"><svg><use href="#pinic"/></svg>Cómo llegar</a><a class="pin sea" target="_blank" rel="noopener" href="https://www.stintinospiagge.it"><svg><use href="#pinic"/></svg>Reservar acceso</a></span></div></div>
+      <div class="row"><div class="k">La Pelosa</div><div class="v">La joya del noroeste · dos formas de verla<span class="meta">A ~1h de Alghero y ~1h10 de Castelsardo, cae de camino. Está agotada su reserva anticipada, pero hay dos vías (ver abajo). Recordad la <b>esterilla obligatoria</b> bajo la toalla</span><span class="btns"><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Spiaggia+La+Pelosa+Stintino"><svg><use href="#pinic"/></svg>Cómo llegar</a><button class="pin tips" type="button" onclick="openModal('m-pelosa')"><svg><use href="#pinic"/></svg>Cómo entrar</button></span></div></div>
       <div class="row"><div class="k">Plan B playa</div><div class="v">Le Bombarde / Lazzaretto<span class="meta">Junto a Alghero, sin reserva, si no hay plaza en La Pelosa</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Spiaggia+Le+Bombarde+Alghero"><svg><use href="#pinic"/></svg>Le Bombarde</a></div></div>
       <div class="row"><div class="k">Tarde</div><div class="v">Castelsardo<span class="meta">Casco medieval y Castillo de los Doria</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Castello+dei+Doria+Castelsardo"><svg><use href="#pinic"/></svg>Castillo Doria</a></div></div>
       <div class="row"><div class="k">Alojamiento</div><div class="v">Radici di Luna Exclusive Design<span class="meta">Via Puglia 3, Castelsardo · 1 noche</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/abCK8UWGc3Hqanay6"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
       <div class="row"><div class="k">Cena</div><div class="v">Amare · Alla Guardiola<span class="meta">Terraza con vistas sobre el golfo · reservar</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Amare+Alla+Guardiola+Castelsardo"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
     </div>
-    <div class="note"><strong>La Pelosa:</strong> acceso limitado a 1.500 personas/día del 15 mayo al 15 octubre. Reservad en stintinospiagge.it en cuanto podáis (las plazas vuelan) y llevad <strong>esterilla</strong>: está prohibido poner la toalla directamente sobre la arena.</div>
+    <div class="note"><strong>Plan La Pelosa (agotada la reserva anticipada):</strong> las 1.000 plazas diarias se liberan 2 días antes a las 09:00 — para el día 4, <strong>reservad el 2 de agosto a las 09:00 en punto</strong> en stintinospiagge.it. Si no lo conseguís, <strong>entrad después de las 18:00 sin reserva</strong> (acceso libre) para el baño del atardecer, de camino a Castelsardo. Pulsa "Cómo entrar" para el detalle.</div>
     <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
       <li><span class="star">✦</span><span><b>La Pelosa</b>: aguas someras turquesas con la torre aragonesa y la isla de la Asinara enfrente. De las más bonitas del Mediterráneo.</span></li>
       <li><span class="star">✦</span><span><b>Castillo de los Doria</b> (s. XII) y su <b>Museo della Cestería</b>: las mejores vistas del Golfo de Asinara.</span></li>
@@ -933,7 +934,7 @@
       <h4>Reservas a confirmar</h4>
       <label><input type="checkbox">Coche de alquiler (todo el viaje)</label>
       <label><input type="checkbox" checked>Lu Impostu · 30 jul ✓ reservada (n.º 108102, QR en la web)</label>
-      <label><input type="checkbox">La Pelosa · reservar cuanto antes (stintinospiagge.it) + llevar esterilla</label>
+      <label><input type="checkbox">La Pelosa · intentar reserva el 2 ago a las 09:00 (o plan B: entrar tras las 18:00) + esterilla</label>
       <label><input type="checkbox" checked>Hamacas Porto Giunco · 1 ago ✓ reservadas (estar antes de 9:30)</label>
       <label><input type="checkbox" checked>Hoteles · los 7 confirmados ✓</label>
       <label><input type="checkbox">Restaurantes destacados</label>
@@ -1060,6 +1061,79 @@
       <li>Buen <b>snorkel</b> hacia los extremos rocosos; estáis dentro de un área marina protegida.</li>
       <li>Desde el extremo norte se asoma <b>Cala Brandinchi</b>, separada solo por un promontorio boscoso.</li>
       <li>Curiosidad: <i>Lu Impostu</i> significa en gallurés "lugar donde se amontonan las cosas" — hasta el siglo XVIII fue punto de contrabando con el interior.</li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="modal" id="m-giunco" role="dialog" aria-modal="true" aria-labelledby="m-giunco-t">
+  <div class="modal-bg" onclick="closeModal('m-giunco')"></div>
+  <div class="modal-box">
+    <button class="modal-close" type="button" onclick="closeModal('m-giunco')" aria-label="Cerrar">×</button>
+    <h3 id="m-giunco-t">Porto Giunco Beach Club</h3>
+    <p class="modal-sub">Villasimius · dentro del Parque Marino de Capo Carbonara</p>
+
+    <div class="modal-alert">⚠️ <b>Hay que llegar antes de las 9:30.</b> Pasada esa hora, la reserva se cancela y se reasigna a otros clientes.</div>
+
+    <h4>Aparcamiento (¡importante!)</h4>
+    <ul>
+      <li>Por nuevas normas de prevención de incendios, las plazas se han reducido de 700 a <b>solo 250</b>.</li>
+      <li>Para no hacer cola y asegurar sitio, <b>salid pronto del Istedda</b> (sobre las 8:50) y llegad a las 9:30 como muy tarde.</li>
+    </ul>
+
+    <h4>Vuestra reserva</h4>
+    <ul>
+      <li>Cada plaza admite un máximo de <b>2 adultos y 2 niños</b> (menores de 11 años).</li>
+      <li>Llegada límite: <b>9:30</b>. Después se pierde la plaza.</li>
+    </ul>
+
+    <h4>Servicios (Parque Marino)</h4>
+    <ul>
+      <li>Al estar en zona protegida, el club <b>no tiene aseos propios</b>: hay baños públicos a unos 100 m (0,50 €).</li>
+      <li><b>Duchas</b> disponibles en el club por 1 €.</li>
+      <li>Llevad agua y algo de picar por comodidad, aunque hay servicio de bar en la zona.</li>
+    </ul>
+
+    <h4>Para disfrutarlo</h4>
+    <ul>
+      <li>Subid a la <b>torre aragonesa</b> a media tarde por las vistas de la playa y el estanque.</li>
+      <li>Detrás está el <b>estanque de Notteri</b>, con flamencos rosas en verano.</li>
+      <li>Buen <b>snorkel</b> hacia el extremo rocoso de Capo Carbonara.</li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="modal" id="m-pelosa" role="dialog" aria-modal="true" aria-labelledby="m-pelosa-t">
+  <div class="modal-bg" onclick="closeModal('m-pelosa')"></div>
+  <div class="modal-box">
+    <button class="modal-close" type="button" onclick="closeModal('m-pelosa')" aria-label="Cerrar">×</button>
+    <h3 id="m-pelosa-t">La Pelosa · cómo entrar</h3>
+    <p class="modal-sub">Stintino · una de las playas más bonitas del Mediterráneo</p>
+
+    <div class="modal-alert">La reserva anticipada está agotada hasta mediados de septiembre, pero <b>todavía hay dos formas de entrar</b> el 4 de agosto.</div>
+
+    <h4>Opción A · Liberación diaria (la recomendada)</h4>
+    <ul>
+      <li>De las 1.500 plazas diarias, solo 500 se venden con antelación (esas son las agotadas). Las otras <b>1.000 se liberan dos días antes</b>.</li>
+      <li>Para el <b>4 de agosto</b>, esas plazas se abren el <b>2 de agosto a las 09:00</b> en punto.</li>
+      <li>Poned alarma, entrad en <b>stintinospiagge.it</b> con la sesión ya iniciada y reservad en cuanto abran: a las 9:00 empieza el público general.</li>
+      <li>Coste: 3,50 €/persona. Válida de 8:00 a 18:00. Llevad <b>esterilla</b> obligatoria bajo la toalla.</li>
+    </ul>
+
+    <h4>Opción B · El atardecer sin reserva (plan seguro)</h4>
+    <ul>
+      <li>A partir de las <b>18:00 el acceso es libre</b>, sin reserva ni ticket.</li>
+      <li>En agosto el sol se pone hacia las 20:30: tenéis 2–2,5 h de playa con luz dorada y mucha menos gente.</li>
+      <li>Encaja perfecto con el día: tras dejar las maletas en Castelsardo (o de camino), subís a La Pelosa a última hora para el baño del atardecer.</li>
+      <li>Es la red de seguridad: si la Opción A falla, esta no depende de cupos.</li>
+    </ul>
+
+    <h4>Llegar y aparcar</h4>
+    <ul>
+      <li>Desde Alghero ~1h por la SP34; de La Pelosa a Castelsardo ~1h10.</li>
+      <li>Aparcamientos de pago junto a la playa, se llenan pronto en temporada alta.</li>
+      <li>Vistas a la torre aragonesa y a la isla de la Asinara enfrente; aguas someras y transparentes.</li>
     </ul>
   </div>
 </div>
