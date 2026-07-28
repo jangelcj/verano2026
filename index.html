@@ -91,6 +91,8 @@
   .tag{font-size:.82rem;padding:.18rem .55rem;border-radius:999px;background:var(--sand);color:var(--ink-soft);white-space:nowrap}
   .tag.grp{background:var(--sea);color:#fff}
   .day.fam .tag.grp{background:var(--terracotta);color:#fff}
+  .tag.hora{background:#fdf0d5;color:#8a5a00;font-weight:500}
+  .ok{display:inline-block;font-size:.8rem;font-weight:500;color:#1f6b45;background:rgba(31,107,69,.10);border:1px solid rgba(31,107,69,.3);padding:.14rem .5rem;border-radius:999px;margin-left:.4rem;vertical-align:middle}
   .tag.drive{background:var(--sand-deep);color:var(--ink);display:inline-flex;gap:.3rem;align-items:center}
   .day-toggle{flex:0 0 44px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-size:1.3rem;transition:.3s}
   .day.open .day-toggle{transform:rotate(180deg)}
@@ -168,6 +170,42 @@
 
   footer{text-align:center;padding:2.6rem 1.2rem 3.2rem;color:var(--ink-soft);font-size:.93rem}
   footer .heart{color:var(--terracotta)}
+
+
+  /* ===== ticket de reserva con QR ===== */
+  .ticket{margin-top:1rem;display:flex;gap:1.1rem;flex-wrap:wrap;align-items:flex-start;
+    background:linear-gradient(180deg,rgba(29,110,110,.07),rgba(29,110,110,.02));
+    border:1px solid rgba(29,110,110,.22);border-radius:16px;padding:1rem 1.1rem}
+  .ticket-info{flex:1 1 240px;min-width:0}
+  .ticket-h{font-family:'Fraunces',serif;font-weight:600;font-size:1.08rem;color:var(--sea-deep);margin-bottom:.6rem}
+  .ticket-hint{font-size:.88rem;color:var(--ink-soft);margin-top:.6rem;line-height:1.45}
+  .ticket-qr{flex:0 0 152px;text-align:center}
+  .ticket-qr .qr-svg{width:152px;height:152px;display:block;background:#fff;border-radius:10px;padding:7px;
+    box-shadow:0 2px 10px rgba(35,32,28,.12);cursor:zoom-in}
+  .qr-cap{display:block;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.82rem;color:var(--ink-soft);margin-top:.4rem}
+  @media(max-width:560px){ .ticket{justify-content:center} .ticket-qr{flex:1 1 100%} .ticket-qr .qr-svg{margin:0 auto} }
+
+  button.pin{font-family:inherit;cursor:pointer}
+  .pin.tips{color:#7a4a9e;background:rgba(122,74,158,.10);border-color:rgba(122,74,158,.3)}
+  .pin.tips:hover{background:rgba(122,74,158,.18);border-color:rgba(122,74,158,.55)}
+
+  /* ===== modal ===== */
+  .modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:1.2rem}
+  .modal.open{display:flex}
+  .modal-bg{position:absolute;inset:0;background:rgba(35,32,28,.55);backdrop-filter:blur(3px)}
+  .modal-box{position:relative;background:var(--paper);border-radius:20px;max-width:560px;width:100%;
+    max-height:82vh;overflow-y:auto;padding:1.5rem 1.5rem 1.7rem;box-shadow:0 24px 60px rgba(35,32,28,.3)}
+  .modal-box h3{font-size:1.45rem;margin-bottom:.2rem;padding-right:2rem}
+  .modal-sub{font-size:.95rem;color:var(--ink-soft);margin-bottom:1rem}
+  .modal-close{position:absolute;top:.9rem;right:1rem;border:none;background:var(--sand);color:var(--ink);
+    width:34px;height:34px;border-radius:50%;font-size:1.2rem;line-height:1;cursor:pointer;transition:.18s}
+  .modal-close:hover{background:var(--sand-deep)}
+  .modal-box h4{font-size:1.05rem;color:var(--terracotta);margin:1.1rem 0 .4rem}
+  .modal-box h4:first-of-type{margin-top:.4rem}
+  .modal-box p{font-size:1rem;margin-bottom:.5rem}
+  .modal-box ul{list-style:none;display:grid;gap:.5rem}
+  .modal-box li{font-size:1rem;display:flex;gap:.55rem;align-items:flex-start}
+  .modal-box li::before{content:"·";color:var(--gold);font-weight:700;font-size:1.2rem;line-height:1.1}
 
   @media(max-width:560px){
     .wrap{padding:0 1.35rem}
@@ -430,15 +468,32 @@
       <div class="day-toggle">⌄</div>
     </div>
     <div class="day-body"><div class="day-inner"><div class="rows">
-      <div class="row"><div class="k">Trayecto</div><div class="v">Olbia → Orosei (~2h)<span class="meta">Ruta por la costa este: San Teodoro, Posada, Golfo di Orosei</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Orosei+Sardegna+centro"><svg><use href="#pinic"/></svg>Orosei</a></div></div>
+      <div class="row"><div class="k">Mañana</div><div class="v">Lu Impostu (San Teodoro) <span class="ok">✓ Reservada</span><span class="meta">A ~30 min de Olbia · 1 km de arena blanca frente a la isla de Tavolara, hermana de Cala Brandinchi · dentro del Área Marina Protegida</span><span class="btns"><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Spiaggia+Lu+Impostu+San+Teodoro"><svg><use href="#pinic"/></svg>Cómo llegar</a><button class="pin tips" type="button" onclick="openModal('m-impostu')"><svg><use href="#pinic"/></svg>Recomendaciones</button></span></div></div>
+      <div class="row"><div class="k">Trayecto</div><div class="v">Brandinchi → Orosei (~1h15)<span class="meta">Siguiendo la costa este: Posada y el Golfo di Orosei</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Orosei+Sardegna+centro"><svg><use href="#pinic"/></svg>Orosei</a></div></div>
       <div class="row"><div class="k">Tarde</div><div class="v">Casco histórico de Orosei<span class="meta">Pueblo medieval con sus iglesias y la Piazza del Popolo</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Piazza+del+Popolo+Orosei"><svg><use href="#pinic"/></svg>Centro</a></div></div>
-      <div class="row"><div class="k">Playa</div><div class="v">Cala Liberotto / Bidderosa<span class="meta">Calas de arena blanca y pinares al norte de Orosei</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Cala+Liberotto+Orosei"><svg><use href="#pinic"/></svg>Cala Liberotto</a></div></div>
+      <div class="row"><div class="k">Plan B playa</div><div class="v">Cala Liberotto / Bidderosa<span class="meta">Alternativa si no hay plaza en Brandinchi (Bidderosa también con cupo)</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Cala+Liberotto+Orosei"><svg><use href="#pinic"/></svg>Cala Liberotto</a></div></div>
       <div class="row"><div class="k">Alojamiento</div><div class="v">Su Barchile Hotel Ristorante<span class="meta">Via F. I. Mannu 5, Orosei · 1 noche</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/cPtqkVCY1GDM6mSr8"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
       <div class="row"><div class="k">Cena</div><div class="v">Casco antiguo de Orosei<a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=ristoranti+centro+Orosei"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
     </div>
+    <div class="ticket">
+      <div class="ticket-info">
+        <div class="ticket-h">🎟️ Reserva confirmada · Lu Impostu</div>
+        <div class="bk-row"><span class="bk-k">Reserva n.º</span><span class="bk-code">108102</span></div>
+        <div class="bk-row"><span class="bk-k">Fecha</span><span>Jueves 30 julio 2026</span></div>
+        <div class="bk-row"><span class="bk-k">Personas</span><span>2</span></div>
+        <div class="bk-row"><span class="bk-k">Importe</span><span>4,00 €</span></div>
+        <div class="bk-row"><span class="bk-k">Playa</span><span>Lu Impostu · San Teodoro</span></div>
+        <p class="ticket-hint">Mostrar el QR en el acceso a la playa. Válido solo para el 30 de julio.</p>
+      </div>
+      <div class="ticket-qr">
+        <svg xmlns="http://www.w3.org/2000/svg" class="qr-svg" viewBox="0 0 560 560" role="img" aria-label="Código QR reserva 108102"><rect x="0" y="0" width="560" height="560" fill="#ffffff"/><g transform="scale(13.659)"><g transform="translate(2,2)"><path fill-rule="evenodd" d="M9 0L9 1L8 1L8 2L9 2L9 3L8 3L8 4L10 4L10 7L11 7L11 4L12 4L12 5L13 5L13 4L16 4L16 5L14 5L14 7L15 7L15 8L13 8L13 6L12 6L12 9L15 9L15 8L16 8L16 9L19 9L19 10L18 10L18 12L16 12L16 10L11 10L11 11L10 11L10 12L11 12L11 13L12 13L12 14L13 14L13 15L12 15L12 17L13 17L13 16L14 16L14 17L18 17L18 19L19 19L19 18L20 18L20 19L21 19L21 20L19 20L19 21L18 21L18 20L17 20L17 19L16 19L16 18L15 18L15 19L14 19L14 20L15 20L15 21L12 21L12 19L13 19L13 18L11 18L11 17L8 17L8 18L6 18L6 19L8 19L8 20L5 20L5 19L4 19L4 20L5 20L5 22L6 22L6 23L3 23L3 22L4 22L4 21L3 21L3 22L2 22L2 23L1 23L1 22L0 22L0 29L1 29L1 24L2 24L2 25L3 25L3 26L2 26L2 28L3 28L3 27L4 27L4 29L8 29L8 31L9 31L9 32L8 32L8 37L9 37L9 34L10 34L10 33L9 33L9 32L11 32L11 31L9 31L9 30L11 30L11 29L12 29L12 30L13 30L13 31L12 31L12 33L13 33L13 32L14 32L14 33L17 33L17 34L20 34L20 35L21 35L21 36L19 36L19 37L21 37L21 36L23 36L23 35L21 35L21 34L24 34L24 35L25 35L25 34L24 34L24 33L29 33L29 34L27 34L27 35L26 35L26 36L25 36L25 37L27 37L27 36L29 36L29 35L30 35L30 37L31 37L31 36L33 36L33 35L36 35L36 36L34 36L34 37L37 37L37 33L35 33L35 32L37 32L37 30L35 30L35 32L34 32L34 29L35 29L35 28L34 28L34 29L33 29L33 28L30 28L30 27L32 27L32 25L33 25L33 27L34 27L34 25L35 25L35 27L36 27L36 28L37 28L37 26L36 26L36 25L37 25L37 22L36 22L36 21L37 21L37 18L36 18L36 17L37 17L37 14L36 14L36 13L37 13L37 12L36 12L36 11L37 11L37 10L36 10L36 8L35 8L35 9L34 9L34 8L33 8L33 10L32 10L32 8L31 8L31 10L29 10L29 9L30 9L30 8L29 8L29 9L28 9L28 8L27 8L27 6L28 6L28 7L29 7L29 4L28 4L28 5L27 5L27 3L29 3L29 2L28 2L28 1L29 1L29 0L28 0L28 1L26 1L26 0L25 0L25 2L22 2L22 1L21 1L21 0L18 0L18 1L15 1L15 0L13 0L13 1L11 1L11 2L10 2L10 0ZM23 0L23 1L24 1L24 0ZM13 1L13 2L12 2L12 4L13 4L13 3L15 3L15 1ZM19 1L19 3L18 3L18 2L17 2L17 3L16 3L16 4L17 4L17 7L16 7L16 6L15 6L15 7L16 7L16 8L20 8L20 10L19 10L19 11L20 11L20 12L19 12L19 13L20 13L20 14L17 14L17 13L15 13L15 11L12 11L12 13L14 13L14 14L16 14L16 15L14 15L14 16L18 16L18 17L20 17L20 18L21 18L21 19L22 19L22 20L21 20L21 21L20 21L20 22L19 22L19 24L18 24L18 23L17 23L17 22L18 22L18 21L15 21L15 22L16 22L16 23L17 23L17 24L16 24L16 25L14 25L14 24L15 24L15 23L14 23L14 24L13 24L13 25L12 25L12 23L13 23L13 22L12 22L12 21L11 21L11 23L10 23L10 20L11 20L11 19L10 19L10 20L9 20L9 23L8 23L8 24L7 24L7 23L6 23L6 24L5 24L5 25L6 25L6 26L5 26L5 27L6 27L6 28L7 28L7 27L6 27L6 26L7 26L7 25L9 25L9 24L10 24L10 26L13 26L13 27L12 27L12 29L15 29L15 30L18 30L18 31L17 31L17 32L19 32L19 33L23 33L23 32L20 32L20 30L21 30L21 31L24 31L24 32L28 32L28 30L26 30L26 29L25 29L25 28L26 28L26 26L28 26L28 25L29 25L29 24L28 24L28 23L27 23L27 22L28 22L28 21L29 21L29 22L30 22L30 24L31 24L31 25L30 25L30 26L29 26L29 27L28 27L28 28L29 28L29 27L30 27L30 26L31 26L31 25L32 25L32 24L31 24L31 23L32 23L32 22L33 22L33 25L34 25L34 24L36 24L36 23L35 23L35 21L34 21L34 22L33 22L33 21L32 21L32 22L31 22L31 21L29 21L29 20L31 20L31 19L32 19L32 20L36 20L36 19L34 19L34 17L32 17L32 16L33 16L33 15L34 15L34 16L35 16L35 17L36 17L36 15L34 15L34 13L32 13L32 12L31 12L31 13L29 13L29 12L30 12L30 11L29 11L29 10L28 10L28 9L24 9L24 8L23 8L23 7L24 7L24 6L25 6L25 8L26 8L26 4L24 4L24 5L23 5L23 4L22 4L22 3L21 3L21 4L20 4L20 2L21 2L21 1ZM25 2L25 3L26 3L26 2ZM10 3L10 4L11 4L11 3ZM17 3L17 4L18 4L18 5L20 5L20 8L22 8L22 7L23 7L23 5L22 5L22 7L21 7L21 5L20 5L20 4L18 4L18 3ZM8 5L8 7L9 7L9 5ZM18 6L18 7L19 7L19 6ZM0 8L0 11L3 11L3 12L0 12L0 13L3 13L3 14L0 14L0 16L1 16L1 17L2 17L2 19L1 19L1 20L0 20L0 21L1 21L1 20L2 20L2 19L3 19L3 18L5 18L5 17L7 17L7 16L8 16L8 15L11 15L11 14L8 14L8 13L7 13L7 12L6 12L6 11L7 11L7 10L9 10L9 9L11 9L11 8L6 8L6 9L7 9L7 10L3 10L3 9L5 9L5 8ZM1 9L1 10L2 10L2 9ZM23 9L23 10L22 10L22 11L21 11L21 10L20 10L20 11L21 11L21 12L20 12L20 13L21 13L21 14L20 14L20 17L21 17L21 18L22 18L22 19L23 19L23 20L22 20L22 21L21 21L21 22L20 22L20 23L21 23L21 24L22 24L22 25L18 25L18 24L17 24L17 25L16 25L16 26L15 26L15 27L14 27L14 28L15 28L15 29L19 29L19 30L20 30L20 28L25 28L25 25L28 25L28 24L24 24L24 23L23 23L23 22L24 22L24 21L26 21L26 22L27 22L27 21L28 21L28 20L29 20L29 18L30 18L30 19L31 19L31 18L32 18L32 17L31 17L31 16L32 16L32 13L31 13L31 16L30 16L30 14L26 14L26 12L24 12L24 13L21 13L21 12L23 12L23 10L24 10L24 9ZM26 10L26 11L28 11L28 12L29 12L29 11L28 11L28 10ZM35 10L35 11L34 11L34 12L35 12L35 13L36 13L36 12L35 12L35 11L36 11L36 10ZM8 11L8 12L9 12L9 11ZM3 12L3 13L4 13L4 12ZM5 12L5 13L6 13L6 14L7 14L7 15L5 15L5 16L4 16L4 15L3 15L3 17L5 17L5 16L7 16L7 15L8 15L8 14L7 14L7 13L6 13L6 12ZM24 13L24 14L22 14L22 16L21 16L21 17L23 17L23 16L24 16L24 14L25 14L25 13ZM1 15L1 16L2 16L2 15ZM25 15L25 16L26 16L26 15ZM28 16L28 17L26 17L26 18L28 18L28 17L29 17L29 16ZM24 17L24 18L23 18L23 19L25 19L25 20L26 20L26 19L25 19L25 17ZM30 17L30 18L31 18L31 17ZM27 19L27 20L28 20L28 19ZM23 20L23 21L22 21L22 22L23 22L23 21L24 21L24 20ZM6 21L6 22L7 22L7 21ZM2 23L2 24L3 24L3 25L4 25L4 24L3 24L3 23ZM22 23L22 24L23 24L23 23ZM6 24L6 25L7 25L7 24ZM17 25L17 26L18 26L18 25ZM22 25L22 26L21 26L21 27L24 27L24 26L23 26L23 25ZM8 26L8 27L9 27L9 26ZM19 26L19 27L16 27L16 28L20 28L20 26ZM10 27L10 28L11 28L11 27ZM8 28L8 29L9 29L9 28ZM21 29L21 30L24 30L24 29ZM29 29L29 32L32 32L32 29ZM25 30L25 31L26 31L26 30ZM30 30L30 31L31 31L31 30ZM14 31L14 32L15 32L15 31ZM31 33L31 34L30 34L30 35L31 35L31 34L32 34L32 35L33 35L33 34L34 34L34 33L33 33L33 34L32 34L32 33ZM11 34L11 35L10 35L10 37L12 37L12 35L13 35L13 34ZM15 34L15 35L14 35L14 36L15 36L15 37L16 37L16 36L15 36L15 35L16 35L16 34ZM17 36L17 37L18 37L18 36ZM0 0L0 7L7 7L7 0ZM1 1L1 6L6 6L6 1ZM2 2L2 5L5 5L5 2ZM37 0L30 0L30 7L37 7ZM36 1L31 1L31 6L36 6ZM35 2L32 2L32 5L35 5ZM0 37L7 37L7 30L0 30ZM1 36L6 36L6 31L1 31ZM2 35L5 35L5 32L2 32Z" fill="#000000"/></g></g></svg>
+        <span class="qr-cap">#108102</span>
+      </div>
+    </div>
     <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
+      <li><span class="star">✦</span><span><b>Lu Impostu</b>: baño matinal en aguas someras y transparentes, con la silueta de Tavolara en el horizonte. Mejor temprano, con el agua en calma.</span></li>
+      <li><span class="star">✦</span><span>Asomarse a <b>Cala Brandinchi</b>, justo al lado tras el promontorio boscoso: se ve desde el extremo norte de la playa.</span></li>
       <li><span class="star">✦</span><span>El <b>Golfo di Orosei</b>: uno de los tramos de costa más espectaculares de Cerdeña, calas de aguas esmeralda entre acantilados.</span></li>
-      <li><span class="star">✦</span><span><b>Cala Liberotto y el oasis de Bidderosa</b>: arena blanca y pinares (Bidderosa tiene acceso con cupo en verano, conviene reservar).</span></li>
       <li><span class="star">✦</span><span><b>Casco histórico medieval</b> de Orosei: la Piazza del Popolo, la iglesia de San Giacomo y el mirador sobre el valle del Cedrino.</span></li>
       <li><span class="star">✦</span><span>Romper el viaje aquí convierte el traslado al sur en un día de descubrimiento, no en horas de coche.</span></li>
     </ul></div>
@@ -472,22 +527,24 @@
       <div class="day-num"><span class="d">01</span><span class="m">Sáb Ago</span></div>
       <div class="day-title">
         <span class="route">Playa en familia · Porto Giunco</span>
-        <span class="tags"><span class="tag grp">Pareja + hijos</span><span class="tag drive">🚗 ~20 min</span><span class="tag">⭐ Día estrella</span></span>
+        <span class="tags"><span class="tag grp">Pareja + hijos</span><span class="tag drive">🚗 ~20 min</span><span class="tag hora">🕘 Antes de 9:30</span><span class="tag">⭐ Día estrella</span></span>
       </div>
       <div class="day-toggle">⌄</div>
     </div>
     <div class="day-body"><div class="day-inner"><div class="rows">
-      <div class="row"><div class="k">Trayecto</div><div class="v">Istedda → Porto Giunco (Villasimius, ~20 min)<span class="meta">Llegar pronto (antes de las 10:00) para aparcar y coger buen sitio</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Spiaggia+di+Porto+Giunco+Villasimius"><svg><use href="#pinic"/></svg>Porto Giunco</a></div></div>
-      <div class="row"><div class="k">El día</div><div class="v">Día completo de playa con hamacas<span class="meta">Arena blanca finísima y aguas turquesas al pie de la torre aragonesa · alquilar hamacas y sombrilla en los lidos de la playa</span><a class="pin" target="_blank" rel="noopener" href="https://www.sardegnaturismo.it/es/explora/porto-giunco"><svg><use href="#pinic"/></svg>Guía oficial</a></div></div>
+      <div class="row"><div class="k">⏰ Clave</div><div class="v"><b>Estar en la playa antes de las 9:30</b><span class="meta">Salir del Istedda sobre las 8:50–9:00 · hamacas ya reservadas</span></div></div>
+      <div class="row"><div class="k">Trayecto</div><div class="v">Istedda → Porto Giunco (Villasimius, ~20 min)<span class="meta">Aparcamiento de pago junto a la playa, se llena pronto</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Spiaggia+di+Porto+Giunco+Villasimius"><svg><use href="#pinic"/></svg>Porto Giunco</a></div></div>
+      <div class="row"><div class="k">El día</div><div class="v">Día completo de playa con hamacas <span class="ok">✓ Reservadas</span><span class="meta">Arena blanca finísima y aguas turquesas al pie de la torre aragonesa</span><a class="pin" target="_blank" rel="noopener" href="https://www.sardegnaturismo.it/es/explora/porto-giunco"><svg><use href="#pinic"/></svg>Guía oficial</a></div></div>
       <div class="row"><div class="k">Comida</div><div class="v">Chiringuito / lido de la playa<span class="meta">Comida informal sin moverse de la arena</span></div></div>
       <div class="row"><div class="k">Cena</div><div class="v">Sobat (fine dining) o Balù Lounge<span class="meta">Algo especial para celebrar el día en familia</span><span class="pending">⏳ Pendiente reservar</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Sobat+Restaurant+Villasimius"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
     </div>
-    <div class="note"><strong>Consejo de agosto:</strong> Porto Giunco es de las playas más deseadas del sur; id temprano y reservad las hamacas con antelación si el lido lo permite. El aparcamiento es de pago y se llena pronto.</div>
+    <div class="note"><strong>No os durmáis:</strong> hay que estar allí <strong>antes de las 9:30</strong>. Poned alarma y salid del hotel sobre las 8:50. El aparcamiento es de pago y se llena muy pronto en agosto.</div>
     <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
       <li><span class="star">✦</span><span><b>La torre aragonesa de Porto Giunco</b>: subir a media tarde por las vistas de la playa y el estanque desde lo alto.</span></li>
       <li><span class="star">✦</span><span><b>El estanque de Notteri</b>, justo detrás de la playa: en verano suele haber <b>flamencos rosas</b>.</span></li>
       <li><span class="star">✦</span><span><b>Baño en la "playa de los dos mares"</b>: la franja de arena separa el mar del estanque, aguas someras y turquesas.</span></li>
       <li><span class="star">✦</span><span><b>Snorkel</b> hacia el extremo rocoso de Capo Carbonara, área marina protegida.</span></li>
+      <li><span class="star">✦</span><span>Si os sobra tarde: <b>Punta Molentis</b>, a 10 min, otra cala preciosa (aparcamiento de pago con cupo, se llena a media mañana).</span></li>
     </ul></div>
     </div></div>
   </article>
@@ -552,13 +609,16 @@
       <div class="day-toggle">⌄</div>
     </div>
     <div class="day-body"><div class="day-inner"><div class="rows">
-      <div class="row"><div class="k">Trayecto</div><div class="v">Alghero → Castelsardo (~1h)<span class="meta">Parada opcional en Capo Caccia / Gruta de Neptuno de camino</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Castelsardo+centro+storico"><svg><use href="#pinic"/></svg>Castelsardo</a></div></div>
-      <div class="row"><div class="k">Mañana</div><div class="v">Playa cerca de Alghero<span class="meta">Le Bombarde o Lazzaretto antes de salir</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Spiaggia+Le+Bombarde+Alghero"><svg><use href="#pinic"/></svg>Le Bombarde</a></div></div>
+      <div class="row"><div class="k">Trayecto</div><div class="v">Alghero → (Stintino) → Castelsardo<span class="meta">Directo ~1h · vía La Pelosa: 1h + 1h10, perfectamente asumible</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Castelsardo+centro+storico"><svg><use href="#pinic"/></svg>Castelsardo</a></div></div>
+      <div class="row"><div class="k">Mañana</div><div class="v">La Pelosa (Stintino) · la joya del noroeste<span class="meta">A ~1h de Alghero y ~1h10 de Castelsardo: cae de camino · ⚠️ reserva obligatoria (3,50 €/persona) y <b>esterilla obligatoria</b> bajo la toalla</span><span class="btns"><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Spiaggia+La+Pelosa+Stintino"><svg><use href="#pinic"/></svg>Cómo llegar</a><a class="pin sea" target="_blank" rel="noopener" href="https://www.stintinospiagge.it"><svg><use href="#pinic"/></svg>Reservar acceso</a></span></div></div>
+      <div class="row"><div class="k">Plan B playa</div><div class="v">Le Bombarde / Lazzaretto<span class="meta">Junto a Alghero, sin reserva, si no hay plaza en La Pelosa</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Spiaggia+Le+Bombarde+Alghero"><svg><use href="#pinic"/></svg>Le Bombarde</a></div></div>
       <div class="row"><div class="k">Tarde</div><div class="v">Castelsardo<span class="meta">Casco medieval y Castillo de los Doria</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Castello+dei+Doria+Castelsardo"><svg><use href="#pinic"/></svg>Castillo Doria</a></div></div>
       <div class="row"><div class="k">Alojamiento</div><div class="v">Radici di Luna Exclusive Design<span class="meta">Via Puglia 3, Castelsardo · 1 noche</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/abCK8UWGc3Hqanay6"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
       <div class="row"><div class="k">Cena</div><div class="v">Amare · Alla Guardiola<span class="meta">Terraza con vistas sobre el golfo · reservar</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Amare+Alla+Guardiola+Castelsardo"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
     </div>
+    <div class="note"><strong>La Pelosa:</strong> acceso limitado a 1.500 personas/día del 15 mayo al 15 octubre. Reservad en stintinospiagge.it en cuanto podáis (las plazas vuelan) y llevad <strong>esterilla</strong>: está prohibido poner la toalla directamente sobre la arena.</div>
     <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
+      <li><span class="star">✦</span><span><b>La Pelosa</b>: aguas someras turquesas con la torre aragonesa y la isla de la Asinara enfrente. De las más bonitas del Mediterráneo.</span></li>
       <li><span class="star">✦</span><span><b>Castillo de los Doria</b> (s. XII) y su <b>Museo della Cestería</b>: las mejores vistas del Golfo de Asinara.</span></li>
       <li><span class="star">✦</span><span><b>Catedral de Sant’Antonio Abate</b>: campanario con cúpula de cerámica de colores asomada al mar.</span></li>
       <li><span class="star">✦</span><span><b>Castelsardo de noche</b>: el pueblo medieval iluminado y sin turistas de día, la ventaja de dormir aquí.</span></li>
@@ -579,13 +639,14 @@
     <div class="day-body"><div class="day-inner"><div class="rows">
       <div class="row"><div class="k">Trayecto</div><div class="v">Castelsardo → Palau (~1h15)<span class="meta">Mucho más corto que antes: ya estáis en el norte</span><a class="pin sea" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Maddalena+Lines+Palau+imbarco"><svg><use href="#pinic"/></svg>Embarque Palau</a></div></div>
       <div class="row"><div class="k">Ferry</div><div class="v">Palau ↔ La Maddalena<span class="meta">~15–20 min de travesía · salidas muy frecuentes</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Maddalena+Lines+Palau"><svg><use href="#pinic"/></svg>Ferry Palau</a></div></div>
-      <div class="row"><div class="k">El día</div><div class="v">Archipiélago de La Maddalena<span class="meta">La Maddalena y Caprera (Cala Coticcio); o excursión en barco a Spargi y Budelli</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=La+Maddalena+centro+Cala+Gavetta"><svg><use href="#pinic"/></svg>La Maddalena</a></div></div>
+      <div class="row"><div class="k">El día</div><div class="v">Archipiélago de La Maddalena<span class="meta">Excursión en barco (Spargi, Budelli, Santa Maria) o recorrer en coche La Maddalena y Caprera</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=La+Maddalena+centro+Cala+Gavetta"><svg><use href="#pinic"/></svg>La Maddalena</a></div></div>
+      <div class="row"><div class="k">Calas libres</div><div class="v">Bassa Trinità · Cala Spalmatore · Cala Napoletana<span class="meta">En La Maddalena y Caprera, sin reserva ni cupo, accesibles en coche</span><a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Spiaggia+Bassa+Trinita+La+Maddalena"><svg><use href="#pinic"/></svg>Bassa Trinità</a></div></div>
       <div class="row"><div class="k">Alojamiento</div><div class="v">Ammentos<span class="meta">Via Dune di Porto Pollo 8, Palau · 1 noche</span><a class="pin sea" target="_blank" rel="noopener" href="https://maps.app.goo.gl/gQzkCNx6PzsVdhWe7"><svg><use href="#pinic"/></svg>Cómo llegar</a></div></div>
       <div class="row"><div class="k">Cena</div><div class="v">Puerto de Palau<a class="pin" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=ristoranti+porto+Palau+Sardegna"><svg><use href="#pinic"/></svg>Restaurantes</a></div></div>
     </div>
     <div class="note"><strong>La ventaja de la nueva ruta:</strong> al dormir en Castelsardo, llegáis a Palau en ~1h15 (no 2h30), con La Maddalena por delante desde primera hora y tiempo de sobra para la excursión en barco.</div>
     <div class="must"><div class="must-h">★ Imprescindibles</div><ul>
-      <li><span class="star">✦</span><span><b>Cala Coticcio</b> ("Tahití") en Caprera: una de las calas más espectaculares de Cerdeña.</span></li>
+      <li><span class="star">✦</span><span><b>Cala Coticcio</b> ("Tahití") en Caprera: espectacular, pero ⚠️ <b>solo se puede pisar con guía autorizada</b> (60 personas/día en 4 grupos, reserva con mucha antelación). Desde el barco se ve sin trámites y es la mejor vista.</span></li>
       <li><span class="star">✦</span><span><b>Excursión en barco por el archipiélago</b>: Spargi, Santa Maria y la Spiaggia Rosa de Budelli (solo se ve desde el agua).</span></li>
       <li><span class="star">✦</span><span><b>Caprera y la Casa-Museo de Garibaldi</b>, unida a La Maddalena por un puente.</span></li>
       <li><span class="star">✦</span><span>Paseo por el <b>centro de La Maddalena</b> (Cala Gavetta) y, de vuelta, atardecer en <b>Palau</b>.</span></li>
@@ -871,7 +932,9 @@
     <div class="check-card">
       <h4>Reservas a confirmar</h4>
       <label><input type="checkbox">Coche de alquiler (todo el viaje)</label>
-      <label><input type="checkbox">Hamacas en Porto Giunco · 1 de agosto (si el lido admite reserva)</label>
+      <label><input type="checkbox" checked>Lu Impostu · 30 jul ✓ reservada (n.º 108102, QR en la web)</label>
+      <label><input type="checkbox">La Pelosa · reservar cuanto antes (stintinospiagge.it) + llevar esterilla</label>
+      <label><input type="checkbox" checked>Hamacas Porto Giunco · 1 ago ✓ reservadas (estar antes de 9:30)</label>
       <label><input type="checkbox" checked>Hoteles · los 7 confirmados ✓</label>
       <label><input type="checkbox">Restaurantes destacados</label>
       <label><input type="checkbox">Ferry Palau ↔ La Maddalena</label>
@@ -902,6 +965,17 @@
 
 <script>
   function tog(el){ el.closest('.day').classList.toggle('open'); }
+
+  // ===== Modales =====
+  function openModal(id){ document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeModal(id){ document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      document.querySelectorAll('.modal.open').forEach(function(m){ m.classList.remove('open'); });
+      document.body.style.overflow='';
+    }
+  });
+
 
   // ===== Modo "Hoy" =====
   (function(){
@@ -946,5 +1020,49 @@
     }
   })();
 </script>
+
+<div class="modal" id="m-impostu" role="dialog" aria-modal="true" aria-labelledby="m-impostu-t">
+  <div class="modal-bg" onclick="closeModal('m-impostu')"></div>
+  <div class="modal-box">
+    <button class="modal-close" type="button" onclick="closeModal('m-impostu')" aria-label="Cerrar">×</button>
+    <h3 id="m-impostu-t">Lu Impostu</h3>
+    <p class="modal-sub">San Teodoro · Área Marina Protegida de Tavolara–Punta Coda Cavallo</p>
+
+    <h4>Antes de salir</h4>
+    <ul>
+      <li>Llevad el <b>QR a mano</b> (está en esta web, en el día 30): hay que enseñarlo en el acceso y solo vale para ese día.</li>
+      <li>Salid de Olbia <b>pronto</b>: hasta las 11:00 la playa está tranquila, y el aparcamiento se llena a menudo antes de las 9:30.</li>
+    </ul>
+
+    <h4>Aparcamiento</h4>
+    <ul>
+      <li><b>Lado sur</b> (dirección Puntaldia): aparcamiento municipal de pago, en torno a 1,50 €/h, y algunas plazas libres a lo largo de la avenida.</li>
+      <li><b>Lado norte</b>: aparcamiento privado que da acceso también a Cala Brandinchi, unos 2,50 €/h en agosto. Abre de 8:00 a 20:00.</li>
+      <li>Aparcad solo dentro de las líneas marcadas: por allí multan sin contemplaciones.</li>
+    </ul>
+
+    <h4>Al llegar a la playa</h4>
+    <ul>
+      <li>Detrás de la playa hay un estanque que desagua al mar por un canal; se cruza por una <b>pasarela de madera</b>, no hace falta vadear.</li>
+      <li>Es una playa de <b>casi 1 km</b>: caminad un poco y encontraréis sitio más tranquilo lejos de los accesos.</li>
+    </ul>
+
+    <h4>Servicios</h4>
+    <ul>
+      <li>Chiringuito-bar, alquiler de <b>hamacas y sombrillas</b> y aseos públicos.</li>
+      <li>Alquiler de <b>pedales, canoas y SUP</b>, y de neumáticas para recorrer el área marina protegida de Tavolara.</li>
+      <li>Silla JOB para personas con movilidad reducida (servicio gratuito).</li>
+    </ul>
+
+    <h4>Para disfrutarla</h4>
+    <ul>
+      <li>Aguas <b>muy someras y transparentes</b>: se puede caminar metros mar adentro. Ideal para un baño largo y tranquilo.</li>
+      <li>Buen <b>snorkel</b> hacia los extremos rocosos; estáis dentro de un área marina protegida.</li>
+      <li>Desde el extremo norte se asoma <b>Cala Brandinchi</b>, separada solo por un promontorio boscoso.</li>
+      <li>Curiosidad: <i>Lu Impostu</i> significa en gallurés "lugar donde se amontonan las cosas" — hasta el siglo XVIII fue punto de contrabando con el interior.</li>
+    </ul>
+  </div>
+</div>
+
 </body>
 </html>
